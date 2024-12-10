@@ -17,15 +17,19 @@ _Tools: JupyterLab, Python, Google Maps API, Google Tag Manager, Google Analytic
 
 ### Steps:
 
+#### Geocoding data
 In order to build the map our team was provided a list of over 6,000 alcohol retailer addresses in Ontario. These addresses did not include data on coordinates, so I used Jupyter Notebooks and Python to write a script calling the Google Maps API. The script provides the API a csv list of addresses and returns their latitude and longitude coordinates in a separate csv file. 
 
 The geocoding python script can be viewed on GitHub here.
 
+#### Setting up web analytics
 To set up web analytics I provided developers javascript code snippets to add to the map. I set up event tags in Tag Manager, configured event parameters in GA4 and built a dashboard visualizing key data in Looker Studio. Screenshots of the dashboard can be viewed below.
 
-Dashboard screenshot #1
-Dashboard screenshot #2
-Dashboard screenshot #3
+![Dashboard page 1](assets/dashboard screenshot 1.PNG)
+
+![Dashboard page 2](assets/dashboard screenshot 2.PNG)
+
+![Dashboard page 3](assets/dashboard screenshot 3.PNG)
 
 ### Results:
 
