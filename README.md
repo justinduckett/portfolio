@@ -7,3 +7,4 @@ _Tools: JupyterLab, Python, Google Maps API, Google Tag Manager, Google Analytic
 
 ![Alcoholic beverage map](assets/alcohol map.PNG)
 
+[link to my ABOUT page](alcohol-map.md)
