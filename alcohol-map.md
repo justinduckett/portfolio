@@ -25,12 +25,11 @@ The geocoding python script can be viewed on GitHub here.
 #### Setting up web analytics
 To set up web analytics I provided developers javascript code snippets to add to the map. I set up event tags in Tag Manager, configured event parameters in GA4 and built a dashboard visualizing key data in Looker Studio. Screenshots of the dashboard can be viewed below.
 
-![Dashboard page 1](assets/dashboard 1.PNG)
+![Dashboard page 1](assets/dashboard screenshot 1.PNG)
 
-![Dashboard page 2](assets/dashboard 2.PNG)
+![Dashboard page 2](assets/dashboard screenshot 2.PNG)
 
-![Dashboard page 3](assets/dashboard 3.PNG)
-
+![Dashboard page 3](assets/dashboard screenshot 3.PNG)
 ### Results:
 
 - I successfully integrated the Google Maps Geocoding API to accurately add latitude and longitude coordinates for over 6000 addresses, ensuring precise location data for improved user experience.
