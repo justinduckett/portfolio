@@ -1,4 +1,4 @@
-## Alcohol Map
+## Geocoding and web analytics for an Alcohol Retailer Map
 
 ### Summary:
 
