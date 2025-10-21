@@ -2,9 +2,9 @@
 
 ### Summary:
 
-I created an automated monthly analytics report for Ontario’s flagship website, Ontario.ca, to provide senior executives with clear, data-driven insights into digital performance. The report combines quantitative metrics from Google Analytics 4 (GA4) with written storytelling and context, helping leadership teams quickly understand key trends, public interests, and the impact of digital initiatives.
+I created an automated monthly analytics report for Ontario’s flagship website, Ontario.ca, to provide senior executives with data-driven insights into digital performance. The report combines quantitative metrics from Google Analytics 4 (GA4) with written storytelling and context, helping leadership teams quickly understand key trends, public interests, and the impact of digital initiatives.
 
-The finished 10-page report includes eight main data visualizations and a mix of narrative insights and design elements built in Looker Studio. It is distributed monthly to a high-profile audience, including the Premier’s Office, Ontario.ca Executive Table, and Directors of Communications.
+It is distributed monthly to senior audiences, including the Premier’s Office, Ontario.ca Executive Table, and Directors of Communications.
 
 ### Tools used:
 
