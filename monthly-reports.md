@@ -6,6 +6,8 @@ I created an automated monthly analytics report for Ontario’s flagship website
 
 It is distributed monthly to senior audiences, including the Premier’s Office, Ontario.ca Executive Table, and Directors of Communications.
 
+![Monthly product report](assets/monthly report - trending pages.jpg)
+
 ### Tools used:
 
 - **Python and Google Colab** – for data extraction, cleaning, and transformation
