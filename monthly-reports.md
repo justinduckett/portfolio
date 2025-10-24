@@ -26,11 +26,11 @@ This new reporting process:
 
 ### Steps taken to build the reports:
 
-1. Data Pipeline Development
+**1. Data Pipeline Development**
 
 I built Python scripts in Google Colab to connect directly to the GA4 API, allowing for flexible, advanced queries without relying on BigQuery. The scripts pull raw data, clean and transform it, calculate metrics such as month-over-month percentage change, and then automatically update a linked Google Sheet.
 
-2. Data Visualization and Reporting Framework
+**2. Data Visualization and Reporting Framework**
 
 Looker Studio was linked to the Google Sheet to visualize metrics through charts, scorecards, and trend lines. By maintaining a consistent data schema, I could refresh the visuals each month without needing to rebuild the dashboard.
 
