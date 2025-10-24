@@ -13,4 +13,4 @@ I created an automated monthly analytics report for Ontario’s flagship website
 
 _Tools: Python, pandas, NumPy, Google Colab, Google Analytics API, Google Analytics 4, Google Sheets, Looker Studio_
 
-![Monthly product report](assets/monthly report - trending pages.jpg)
+![Monthly product report](assets/trending pages.jpg)
