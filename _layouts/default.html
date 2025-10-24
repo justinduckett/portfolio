@@ -18,6 +18,15 @@
         grid-column: 2; /* Right-hand column of the theme */
       }
     </style>
+
+    <style>
+      /* Add small external link icon to external links in content area */
+      .content-area a[target="_blank"]::after {
+        content: " ↗";
+        font-size: 0.8em;
+      }
+    </style>
+    
   </head>
   <body>
     <div class="wrapper">
