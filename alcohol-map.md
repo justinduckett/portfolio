@@ -70,4 +70,4 @@ After the code snippets are added to the page, I set up custom event tags in Tag
 
 - News Release: [Let’s Make it an Ontario-Made Summer!](https://news.ontario.ca/en/release/1004813/lets-make-it-an-ontario-made-summer)
 - CBC News: [Ford rolls out map to help find booze retailers amid LCBO strike](https://www.cbc.ca/news/canada/toronto/online-map-alcohol-sales-ontario-lcbo-strike-1.7257144)
-- CTV News: [Ontario launches interactive map of retail locations selling alcohol during LCBO strike](https://toronto.ctvnews.ca/ontario-launches-interactive-map-of-retail-locations-selling-alcohol-during-lcbo-strike-1.6955317)
+- CTV News: [Ontario launches interactive map of retail locations selling alcohol during LCBO strike](https://www.ctvnews.ca/toronto/article/new-map-shows-2300-ontario-locations-where-you-can-still-buy-alcohol-during-lcbo-strike/)
