@@ -7,7 +7,7 @@ _Tools: JupyterLab, Python, Google Maps API, Google Tag Manager, Google Analytic
 
 ![Alcoholic beverage map](assets/alcohol map.PNG)
 
-### [Automating Executive Insights: Ontario.ca Monthly Analytics Report](monthly-reports.md)
+### [Automating executive insights: Ontario.ca monthly analytics report](monthly-reports.md)
 
 I created an automated monthly analytics report for Ontario’s flagship website, Ontario.ca, to provide senior executives with data-driven insights into digital performance. The report helps leadership teams quickly understand key trends, public interests, and the impact of digital initiatives. It is distributed monthly to senior audiences, including the Premier’s Office, Ontario.ca Executive Table, and Directors of Communications.
 
