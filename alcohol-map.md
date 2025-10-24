@@ -28,7 +28,7 @@ I used Jupyter Notebooks and Python to write a script calling the Google Maps AP
 | 450 Trudeau Drive, Sarnia, N7S4V1, ON | 42.960762 | -82.357230 |
 | 2611 Muskoka Road 117, Baysville, P0B1A0, ON | 45.146350 | -79.121450 |
 
-The geocoding python script can be [viewed on GitHub here](https://github.com/justinduckett/google-maps-geocoding-script).
+The geocoding python script can be [viewed on GitHub here](https://github.com/justinduckett/google-maps-geocoding-script)
 
 #### Setting up web analytics
 To set up web analytics I provided developers javascript code snippets in order to track custom events. These code snippets fire whenever certain actions take place on the page, like clicking a map pin or using the map filters. The code snippets pass in additional data to Google Tag Manager via a data layer, that we then use to create custom events. An example of a data layer code snippet to track map pin clicks looks like this:
@@ -52,7 +52,6 @@ After the code snippets are added to the page, I set up custom event tags in Tag
 ![Dashboard page 2](assets/dashboard screenshot 2.PNG)
 
 ![Dashboard page 3](assets/dashboard screenshot 3.PNG)
-
 ### Results:
 
 - I successfully integrated the Google Maps Geocoding API to accurately add latitude and longitude coordinates for over 6000 addresses, ensuring precise location data for improved user experience.
