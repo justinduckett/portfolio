@@ -40,11 +40,12 @@
         {% endif %}
       </header>
 
-      <nav style="margin-bottom: 2rem; font-size: 0.9em;">
-      <a href="{{ "/" | relative_url }}" style="text-decoration: none;">← Back to Home</a>
-      </nav>
-      
       <section>
+      {% unless page.url == "/portfolio" %}
+      <nav style="margin-bottom: 2rem; font-size: 0.9em;">
+        <a href="{{ "/" | relative_url }}" style="text-decoration: none;">← Back to Home</a>
+      </nav>
+      {% endunless %}
 
       {{ content }}
 
