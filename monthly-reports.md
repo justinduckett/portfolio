@@ -1,4 +1,4 @@
-## Automating Executive Insights: Ontario.ca Analytics Reporting
+## Automating executive insights: Ontario.ca analytics reporting
 
 ### Summary:
 
