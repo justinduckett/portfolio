@@ -62,6 +62,16 @@
 
     </div>
     <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
+    <script>
+    // Make all external links in the content area open in a new tab
+    document.querySelectorAll('.content-area a[href^="http"]').forEach(link => {
+    if (!link.href.includes(window.location.hostname)) {
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener noreferrer');
+    }
+  });
+</script>
+
   </body>
 </html>
 
