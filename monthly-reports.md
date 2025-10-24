@@ -16,7 +16,7 @@ It is distributed monthly to senior audiences, including the Premier’s Office,
 
 ### Purpose of the work:
 
-The goal of the project was to streamline executive reporting and make digital insights more actionable across the Ontario government. Previously, data had to be manually gathered and summarized, which limited the complexity of analysis and made it harder to highlight emerging trends.
+The goal of the project was to **streamline executive reporting** and make digital insights more actionable across the Ontario government. Previously, data had to be manually gathered and summarized, which limited the complexity of analysis and made it harder to highlight emerging trends.
 
 This new reporting process:
 - Automates monthly data collection from GA4
