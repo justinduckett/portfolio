@@ -2,25 +2,29 @@
 
 ### Summary:
 
-During an LCBO strike in July 2024, the Ontario Government rolled out a searchable and interactive map to help consumers find outlets to buy beer, wine, cider and spirits. For this project I was responsible for geocoding over 6,000 address locations for the map, as well as setting up web analytics and reporting.
-
-_Tools: JupyterLab, Python, Google Maps API, Google Tag Manager, Google Analytics 4, Looker Studio_
+During an LCBO strike in July 2024, the Ontario Government launched a searchable, interactive map to help consumers find alternative alcohol retailers across the province. I led the geocoding and analytics implementation for this project. The map became one of the most visited pages on Ontario.ca, supporting public awareness and service continuity during a province-wide labour disruption.
 
 ![Alcoholic beverage map](assets/alcohol map.PNG)
 
-### Questions Answered:
+### Tools used:
 
-- Is there a way we can automate the geocoding of addresses for the map, rather than doing in manually?
-- How many users are visiting the map and viewing specific retailer locations?
-- Can users navigate the map easily? (eg searching, using filters or directly clicking pins)
-- What traffic sources are driving users to the map and what percent of those users are engaging with the content?
+- **Python and JupyterLab** – for data cleaning and geocoding automation
+- **Google Maps Geocoding API** – to convert address data into geographic coordinates
+- **Google Tag Manager** – to configure and deploy custom tracking events
+- **Google Analytics 4 (GA4)** – to measure engagement and user behaviour
+- **Looker Studio** – to visualize user interaction data and share dashboards with stakeholders
 
-### Steps:
+### Purpose:
 
-#### Geocoding data
-In order to build the map our team was provided a dataset of over 6,000 alcohol retailer addresses in Ontario. It is based on licences issued by the Alcohol and Gaming Commission of Ontario. The addresses in the dataset did not include latitude and longitude coordinates, so locations could not be added to a map. 
+The goal of this project was to rapidly develop a reliable, data-driven mapping solution that helped Ontarians find nearby retailers during the LCBO strike. My responsibilities included automating the geocoding of thousands of retail locations to ensure accurate map placement and implementing analytics tracking to understand how users interacted with the map through searches, filters, and pin clicks.
 
-I used Jupyter Notebooks and Python to write a script calling the Google Maps API. The script provides the API a dataset of addresses and returns a new dataset with their latitude and longitude coordinates in new columns. An example of the updated dataset looked like this:
+### Steps taken to complete the work:
+
+**1. Automated Geocoding Workflow**
+
+I developed a Python script in JupyterLab that connected to the Google Maps Geocoding API, automatically generating latitude and longitude coordinates for more than 6,000 retailer addresses provided by the Alcohol and Gaming Commission of Ontario. This approach eliminated manual data entry and ensured every retail location could be precisely displayed on the map. 
+
+An example of the updated dataset below:
 
 | full_address | latitude | longitude |
 | -------- | ------- | ------- |
@@ -30,8 +34,11 @@ I used Jupyter Notebooks and Python to write a script calling the Google Maps AP
 
 The geocoding python script can be [viewed on GitHub here](https://github.com/justinduckett/google-maps-geocoding-script)
 
-#### Setting up web analytics
-To set up web analytics I provided developers javascript code snippets in order to track custom events. These code snippets fire whenever certain actions take place on the page, like clicking a map pin or using the map filters. The code snippets pass in additional data to Google Tag Manager via a data layer, that we then use to create custom events. An example of a data layer code snippet to track map pin clicks looks like this:
+**2. Custom Web Analytics Setup**
+
+I collaborated with developers to embed JavaScript snippets that passed user interaction data (such as map pin clicks, filter selections, and searches) into the dataLayer for use in Google Tag Manager. These snippets were configured into custom GA4 events that captured parameters like location name, city, and interaction type.
+
+An example of a data layer code snippet:
 
 ```
 <script>
@@ -45,18 +52,29 @@ To set up web analytics I provided developers javascript code snippets in order 
 </script>
 ```
 
-After the code snippets are added to the page, I set up custom event tags in Tag Manager and configured new event parameters in Google Analytics 4. I also built a dashboard visualizing key data in Looker Studio. Screenshots of the dashboard can be viewed below.
+**3. Interactive Dashboards and Reporting**
+
+Using Looker Studio, I designed dashboards that visualized engagement metrics and user behavior patterns. These dashboards allowed the product team to monitor performance in real time and refine the map experience based on usage trends.
+
+Screenshots of the dashboard can be viewed below:
 
 ![Dashboard page 1](assets/dashboard screenshot 1.PNG)
 
 ![Dashboard page 2](assets/dashboard screenshot 2.PNG)
 
 ![Dashboard page 3](assets/dashboard screenshot 3.PNG)
-### Results:
 
-- I successfully integrated the Google Maps Geocoding API to accurately add latitude and longitude coordinates for over 6000 addresses, ensuring precise location data for improved user experience.
-- Web analytics data provided insights on product features, including how users were filtering for location results most often. This allowed the product team to make iterative improvements to the map.
-- Over 450,000 users visited the map and 3 million location pins were clicked in 2024. The map had a very high engagement rate over 65%.
+### Results and impact:
+
+The Alcohol Retailer Map became a high-traffic, high-engagement product during a critical period for the province.
+
+Key outcomes include:
+
+- **Automated geocoding of 6,000+ retailer locations**, ensuring accuracy and speed in launching the public-facing map
+- **200+ hours of manual data work eliminated** through Python automation (based on 2 minutes per location manually looked up)
+- **Over 450,000 users visited the map in 2024**, generating 3 million location pin interactions and an engagement rate above 65 percent
+- Analytics insights revealed how users filtered and searched for locations most effectively, informing design updates and improving usability
+- The project demonstrated how combining **data engineering, analytics, and storytelling** can quickly support high-profile digital government initiatives
 
 ### Project resources:
 
