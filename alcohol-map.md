@@ -16,7 +16,9 @@ During an LCBO strike in July 2024, the Ontario Government launched a searchable
 
 ### Purpose:
 
-The goal of this project was to rapidly develop a reliable, data-driven mapping solution that helped Ontarians find nearby retailers during the LCBO strike. My responsibilities included automating the geocoding of thousands of retail locations to ensure accurate map placement and implementing analytics tracking to understand how users interacted with the map through searches, filters, and pin clicks.
+The goal of this project was to rapidly develop a reliable, data-driven mapping solution that helped Ontarians find nearby retailers during the LCBO strike. 
+
+My responsibilities included automating the geocoding of thousands of retail locations to ensure accurate map placement and implementing analytics tracking to understand how users interacted with the map through searches, filters, and pin clicks.
 
 ### Steps taken to complete the work:
 
@@ -63,7 +65,6 @@ Screenshots of the dashboard can be viewed below:
 ![Dashboard page 2](assets/dashboard screenshot 2.PNG)
 
 ![Dashboard page 3](assets/dashboard screenshot 3.PNG)
-
 ### Results and impact:
 
 The Alcohol Retailer Map became a high-traffic, high-engagement product during a critical period for the province.
