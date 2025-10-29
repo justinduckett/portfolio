@@ -1,7 +1,7 @@
 ## Projects
 ### [1. Geocoding 9,000 addresses into a public map visited by 450k+ Ontarians](alcohol-map.md)
 
-During an LCBO strike in July 2024, the Ontario Government rolled out a searchable and interactive map to help consumers find outlets to buy beer, wine, cider and spirits. For this project I was responsible for geocoding over 6,000 address locations for the map, as well as setting up web analytics and reporting.
+During an LCBO strike in July 2024, the Ontario Government rolled out a searchable and interactive map to help consumers find alternative alcohol retailers across the province. I led the geocoding of over 9,000 address locations for the map, as well as analytics implementation.
 
 _Tools: Python, JupyterLab, Google Maps API, Google Tag Manager, Google Analytics 4, Looker Studio_
 
@@ -9,7 +9,7 @@ _Tools: Python, JupyterLab, Google Maps API, Google Tag Manager, Google Analytic
 
 ### [2. Automating executive insights: Ontario.ca monthly analytics report](monthly-reports.md)
 
-I created an automated monthly analytics report for Ontario’s flagship website, Ontario.ca, to provide senior executives with data-driven insights into digital performance. The report helps leadership teams quickly understand key trends, public interests, and the impact of digital initiatives. It is distributed monthly to senior audiences, including the Premier’s Office, Ontario.ca Executive Table, and Directors of Communications.
+I created an automated monthly analytics report for Ontario’s flagship website, Ontario.ca. The report helps leadership teams quickly understand key trends, public interests, and the impact of marketing campaigns. It is distributed monthly to senior audiences, including the Premier’s Office, Ontario.ca Executive Table, and Directors of Communications.
 
 _Tools: Python, pandas, NumPy, Google Colab, Google Analytics API, Google Analytics 4, Google Sheets, Looker Studio_
 
