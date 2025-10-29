@@ -1,5 +1,5 @@
 ## Projects
-### [1. Geocoding and web analytics for an Alcohol Retailer Map](alcohol-map.md)
+### [1. Geocoding 9,000 addresses into a public map visited by 450k+ Ontarians](alcohol-map.md)
 
 During an LCBO strike in July 2024, the Ontario Government rolled out a searchable and interactive map to help consumers find outlets to buy beer, wine, cider and spirits. For this project I was responsible for geocoding over 6,000 address locations for the map, as well as setting up web analytics and reporting.
 
