@@ -1,4 +1,4 @@
-## Geocoding and web analytics for an Alcohol Retailer Map
+## Geocoding 9,000 addresses into a public map visited by 450k+ Ontarians
 
 ### Summary:
 
@@ -71,8 +71,8 @@ The Alcohol Retailer Map became a high-traffic, high-engagement product during a
 
 Key outcomes include:
 
-- **Automated geocoding of 6,000+ retailer locations**, ensuring accuracy and speed in launching the public-facing map
-- **200+ hours of manual data work eliminated** through Python automation (based on 2 minutes per location manually looked up)
+- **Automated geocoding of 9,000+ retailer locations**, ensuring accuracy and speed in launching the public-facing map
+- **300+ hours of manual data work eliminated** through Python automation (based on 2 minutes per location manually looked up)
 - **Over 450,000 users visited the map in 2024**, generating 3 million location pin interactions and an engagement rate above 65 percent
 - Analytics insights revealed how users filtered and searched for locations most effectively, informing design updates and improving usability
 - The project demonstrated how combining **data engineering, analytics, and storytelling** can quickly support high-profile digital government initiatives
