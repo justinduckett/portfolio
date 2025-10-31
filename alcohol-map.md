@@ -82,7 +82,10 @@ Key outcomes include:
 - View the [geocoding python script on GitHub](https://github.com/justinduckett/google-maps-geocoding-script)
 - View the [Alcoholic Beverage map on ontario.ca](https://www.ontario.ca/page/where-buy-alcoholic-beverages)
 - View the full map [dataset on the Ontario Data Catalouge](https://data.ontario.ca/dataset/alcohol-sales-in-retail-stores)
-- View a [PDF export of the web analytics dashboard](assets/alcohol map dashboard.pdf)
+- View a <a href="{{ '/assets/alcohol map dashboard.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">
+  PDF export of the web analytics dashboard
+</a>
+
 
 ### Media Coverage:
 
