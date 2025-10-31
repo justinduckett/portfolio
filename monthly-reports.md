@@ -6,6 +6,10 @@ I created an automated monthly analytics report for Ontario’s flagship website
 
 ![Monthly product report](assets/trending pages.jpg)
 
+View a sample <a href="{{ '/assets/monthly-report-sept-2025.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">
+  PDF export of the September 2025 Ontario.ca Monthly Report
+</a>
+
 ### Tools used:
 
 - **Python and Google Colab** – for data extraction, cleaning, and transformation
@@ -54,3 +58,20 @@ Key outcomes include:
 - Regular positive feedback from managers on the “New & Notable” section for effectively showcasing team impact
 
 Overall, the report has become a trusted and anticipated deliverable each month. One that blends **technical automation, data visualization, and strategic communication** to tell the story of how Ontarians interact with government online.
+
+### Project resources
+- <a href="{{ '/assets/monthly-report-sept-2025.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">
+  PDF export of the September 2025 Ontario.ca Monthly Report
+</a>
+
+- <a href="{{ '/assets/monthly-report-aug-2025.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">
+  PDF export of the August 2025 Ontario.ca Monthly Report
+</a>
+
+- <a href="{{ '/assets/monthly-report-july-2025.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">
+  PDF export of the July 2025 Ontario.ca Monthly Report
+</a>
+
+- <a href="{{ '/assets/monthly-report-june-2025.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">
+  PDF export of the June 2025 Ontario.ca Monthly Report
+</a>
