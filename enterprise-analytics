@@ -36,10 +36,6 @@ This project achieved:
    
 I authored and secured approval for the 67-page PIA, which standardized rules for cross-domain tracking and data collection. This centralized approach drastically reduced the compliance burden on product teams, ensuring all data collection was secure and privacy-focused.
 
-**1. Data Pipeline Development**
-
-I built Python scripts in Google Colab to connect directly to the GA4 API, allowing for flexible, advanced queries without relying on BigQuery. The scripts pull raw data, clean and transform it, calculate metrics such as month-over-month percentage change, and then automatically update a linked Google Sheet.
-
 **2. Data Visualization and Reporting Framework**
 
 Looker Studio was linked to the Google Sheet to visualize metrics through charts, scorecards, and trend lines. By maintaining a consistent data schema, I could refresh the visuals each month without needing to rebuild the dashboard.
