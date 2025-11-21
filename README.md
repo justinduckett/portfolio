@@ -1,5 +1,13 @@
 ## Projects
-### [1. Geocoding 9,000 addresses into a public map visited by 450k+ Ontarians](alcohol-map.md)
+### [1. Enterprise analytics: Tracking Full User Journeys & Optimizing Conversions](enterprise-analytics.md)
+
+I led an enterprise initiative to implement a unified analytics system across all public facing Ontario.ca services, establishing a single, secure view of the end-to-end user journey. This involved configuring advanced cross-domain tracking, implementing GTM, and authoring a 67-page Data Privacy Impact Assessment (PIA) to standardize compliance. The platform now delivers deep insights into user movements and service drop-off points, standardizing data for product teams and executives.
+
+_Tools: Google Tag Manager, Google Analytics 4, Looker Studio, Data Privacy Impact Assessment (PIA), HTML, JavaScript, and CSS_
+
+![Goal funnel](assets/goal-user-journey.jpg)
+
+### [2. Geocoding 9,000 addresses into a public map visited by 450k+ Ontarians](alcohol-map.md)
 
 During an LCBO strike in July 2024, the Ontario Government rolled out a searchable and interactive map to help consumers find alternative alcohol retailers across the province. I led the geocoding of over 9,000 address locations for the map, as well as analytics implementation.
 
@@ -7,7 +15,7 @@ _Tools: Python, JupyterLab, Google Maps API, Google Tag Manager, Google Analytic
 
 ![Alcoholic beverage map](assets/alcohol map.PNG)
 
-### [2. Automating executive insights: Ontario.ca monthly analytics report](monthly-reports.md)
+### [3. Automating executive insights: Ontario.ca monthly analytics report](monthly-reports.md)
 
 I created an automated monthly analytics report for Ontario’s flagship website, Ontario.ca. The report helps leadership teams quickly understand key trends, public interests, and the impact of marketing campaigns. It is distributed monthly to senior audiences, including the Premier’s Office, Ontario.ca Executive Table, and Directors of Communications.
 
