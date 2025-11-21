@@ -4,7 +4,7 @@
 
 I led an enterprise initiative to implement a unified analytics system across all public facing Ontario.ca services, establishing a single, secure view of the end-to-end user journey. This involved configuring advanced cross-domain tracking, implementing GTM, and authoring a 67-page Data Privacy Impact Assessment (PIA) to standardize compliance. The platform now delivers deep insights into user movements and service drop-off points, standardizing data for product teams and executives.
 
-![Goal funnel](assets/goal-funnel-1.jpg)
+![Goal funnel](assets/goal-user-journey.jpg)
 
 View a sample PDF export of the <a href="{{ '/assets/goal-funnel-report.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">
   Address Change goal funnel report
