@@ -36,30 +36,25 @@ This project achieved:
    
 I authored and secured approval for the 67-page PIA, which standardized rules for cross-domain tracking and data collection. This centralized approach drastically reduced the compliance burden on product teams, ensuring all data collection was secure and privacy-focused.
 
-**2. Data Visualization and Reporting Framework**
+**2. Enterprise Tagging Implementation**
+   
+I configured Google Tag Manager (GTM) containers across all public domains. This included implementing a best-in-class data layer strategy to structure key user information (e.g., completion status, attribution) and ensure consistent data integrity in GA4.
 
-Looker Studio was linked to the Google Sheet to visualize metrics through charts, scorecards, and trend lines. By maintaining a consistent data schema, I could refresh the visuals each month without needing to rebuild the dashboard.
-
-**3. Written Insights and Storytelling**
-
-I authored the narrative content directly in Looker Studio, combining visual data with written analysis to explain trends, seasonal shifts, or the impact of major announcements and campaigns.
-
-**4. Key Report Features**
-
-- **New & Notable Page:** Highlights a new feature or service launched on Ontario.ca each month. This section showcases impact, user adoption, and next steps — helping raise visibility for the Digital and Data team’s work across government.
-- **Trending Pages Analysis:** Displays which Ontario.ca pages are rising or falling in popularity compared to the previous month. Insights often tie to current events, seasonal demand, or active marketing campaigns, developed through collaboration with product and communications teams.
+**3. Cross-Domain Tracking Configuration**
+   
+Addressing the core technical challenge, I implemented linker parameters and domain configurations within GTM to ensure user sessions remained intact as they moved between Ontario.ca and separate service domains (e.g., gov.on.ca, payment platforms, etc.), providing a continuous journey view.
 
 ### Results and impact
 
-This project modernized how executive stakeholders consume digital performance insights. It helped ensure that data-informed storytelling became a regular part of strategic discussions and decision-making.
+This initiative established the foundation for data standardization, ensuring that product teams, senior executives, and program areas have a consistent, privacy-focused understanding of service performance.
 
 Key outcomes include:
-- **16 hour reduction** in manual data preparation time each month
-- **60% improvement** in data accuracy and reporting consistency
-- Enhanced awareness across senior leadership of key public interests and digital priorities
-- Regular positive feedback from managers on the “New & Notable” section for effectively showcasing team impact
 
-Overall, the report has become a trusted and anticipated deliverable each month. One that blends **technical automation, data visualization, and strategic communication** to tell the story of how Ontarians interact with government online.
+- **30% increase in marketing spend efficiency** by connecting tracked GA4 conversions to Google Ads as key events, improving campaign performance and targeting.
+- **Demonstration of Cross-Domain Success:** Developed an end-to-end goal funnel report in Looker Studio for the "Address change" application, spanning the critical ontario.ca and services.ontario.ca domains.
+- **90% reduction** in product team effort for privacy and data standardization work.
+- **Clearer, unified view** of user movement between Ontario.ca and services.ontario.ca, enabling path optimization.
+- **Stronger standards** for data governance, privacy, and security.
 
 ### Project resources
 - <a href="{{ '/assets/monthly-report-sept-2025.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">
