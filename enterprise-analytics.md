@@ -4,10 +4,10 @@
 
 I led an enterprise initiative to implement a unified analytics system across all public facing Ontario.ca services, establishing a single, secure view of the end-to-end user journey. This involved configuring advanced cross-domain tracking, implementing GTM, and authoring a 67-page Data Privacy Impact Assessment (PIA) to standardize compliance. The platform now delivers deep insights into user movements and service drop-off points, standardizing data for product teams and executives.
 
-![Monthly product report](assets/trending pages.jpg)
+![Goal funnel](assets/goal-funnel-1.jpg)
 
-View a sample <a href="{{ '/assets/monthly-report-sept-2025.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">
-  PDF export of the September 2025 Ontario.ca Monthly Report
+View a sample PDF export of the <a href="{{ '/assets/goal-funnel-report.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">
+  Address Change goal funnel report
 </a>
 
 ### Tools used:
@@ -43,6 +43,10 @@ I configured Google Tag Manager (GTM) containers across all public domains. This
 **3. Cross-Domain Tracking Configuration**
    
 Addressing the core technical challenge, I implemented linker parameters and domain configurations within GTM to ensure user sessions remained intact as they moved between Ontario.ca and separate service domains (e.g., gov.on.ca, payment platforms, etc.), providing a continuous journey view.
+
+![Goal funnel](assets/goal-funnel-1.jpg)
+
+![Goal funnel](assets/goal-funnel-2.jpg)
 
 ### Results and impact
 
