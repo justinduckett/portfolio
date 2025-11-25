@@ -64,7 +64,6 @@ Screenshots of the dashboard can be viewed below:
 
 ![Dashboard page 2](assets/dashboard screenshot 2.PNG)
 
-![Dashboard page 3](assets/dashboard screenshot 3.PNG)
 ### Results and impact:
 
 The Alcohol Retailer Map became a high-traffic, high-engagement product during a critical period for the province.
@@ -79,16 +78,21 @@ Key outcomes include:
 
 ### Project resources:
 
-- View the [geocoding python script on GitHub](https://github.com/justinduckett/google-maps-geocoding-script)
-- View the [Alcoholic Beverage map on ontario.ca](https://www.ontario.ca/page/where-buy-alcoholic-beverages)
-- View the full map [dataset on the Ontario Data Catalouge](https://data.ontario.ca/dataset/alcohol-sales-in-retail-stores)
-- View a <a href="{{ '/assets/alcohol map dashboard.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">
-  PDF export of the web analytics dashboard
+- [GitHub geocoding python script](https://github.com/justinduckett/google-maps-geocoding-script)
+  
+- [Ontario.ca Alcohol Map webpage](https://www.ontario.ca/page/where-buy-alcoholic-beverages)
+  
+- [Ontario Data Catalouge Alcohol Map dataset](https://data.ontario.ca/dataset/alcohol-sales-in-retail-stores)
+  
+- <a href="{{ '/assets/alcohol-map-dashboard.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">
+  PDF export of the Alcohol Map analytics dashboard
 </a>
 
 
 ### Media Coverage:
 
 - News Release: [Let’s Make it an Ontario-Made Summer!](https://news.ontario.ca/en/release/1004813/lets-make-it-an-ontario-made-summer)
+  
 - CBC News: [Ford rolls out map to help find booze retailers amid LCBO strike](https://www.cbc.ca/news/canada/toronto/online-map-alcohol-sales-ontario-lcbo-strike-1.7257144)
+  
 - CTV News: [Ontario launches interactive map of retail locations selling alcohol during LCBO strike](https://www.ctvnews.ca/toronto/article/new-map-shows-2300-ontario-locations-where-you-can-still-buy-alcohol-during-lcbo-strike/)
