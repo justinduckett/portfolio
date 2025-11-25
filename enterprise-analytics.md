@@ -61,18 +61,11 @@ Key outcomes include:
 - **Stronger standards** for data governance, privacy, and security.
 
 ### Project resources
-- <a href="{{ '/assets/monthly-report-sept-2025.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">
-  PDF export of the September 2025 Ontario.ca Monthly Report
+- <a href="{{ '/assets/goal-funnel-report.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">
+  PDF export of the Address Change goal funnel report
 </a>
 
-- <a href="{{ '/assets/monthly-report-aug-2025.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">
-  PDF export of the August 2025 Ontario.ca Monthly Report
+- <a href="{{ '/assets/ga4-privacy-assessment.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">
+  PDF export of the GA4 Privacy Impact Assessment
 </a>
 
-- <a href="{{ '/assets/monthly-report-july-2025.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">
-  PDF export of the July 2025 Ontario.ca Monthly Report
-</a>
-
-- <a href="{{ '/assets/monthly-report-june-2025.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">
-  PDF export of the June 2025 Ontario.ca Monthly Report
-</a>
