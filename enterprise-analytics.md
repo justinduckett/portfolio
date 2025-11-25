@@ -36,13 +36,13 @@ This project achieved:
    
 I authored and secured approval for the 67-page PIA, which standardized rules for cross-domain tracking and data collection. This centralized approach drastically reduced the compliance burden on product teams, ensuring all data collection was secure and privacy-focused.
 
-**2. Enterprise Tagging Implementation**
-   
-I configured Google Tag Manager (GTM) containers across all public domains. This included implementing a best-in-class data layer strategy to structure key user information (e.g., completion status, attribution) and ensure consistent data integrity in GA4.
+**2. Technical Implementation: GTM, Data Layer, and Cross-Domain Tagging**
 
-**3. Cross-Domain Tracking Configuration**
-   
-Addressing the core technical challenge, I implemented linker parameters and domain configurations within GTM to ensure user sessions remained intact as they moved between Ontario.ca and separate service domains (e.g., gov.on.ca, payment platforms, etc.), providing a continuous journey view.
+I configured GTM containers across all ontario.ca domains, implementing a best-in-class data layer strategy to structure key user information (e.g., completion status, attribution) and ensure consistent data integrity in GA4. I then implemented linker parameters and domain configurations within GTM to maintain intact user sessions across ontario.ca and separate service domains, enabling a unified journey view.
+
+**3. Data Visualization and Marketing Impact**
+
+I collaborated with marketing and product teams to define high-value service completions as GA4 Key Events. These were strategically passed to Google Ads to improve automated bidding, targeting, and overall campaign performance. To visualize the cross-domain success, I created Looker Studio reports that mapped the full goal funnel for top Service Ontario applications, demonstrating drop-off points across different government domains for optimization.
 
 ![Goal funnel](assets/goal-funnel-1.jpg)
 
