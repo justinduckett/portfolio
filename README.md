@@ -5,7 +5,7 @@ I led an enterprise initiative to implement a unified analytics system across al
 
 _Tools: Google Tag Manager, Google Analytics 4, Looker Studio, HTML, JavaScript, Data Privacy Impact Assessment (PIA)_
 
-![Goal funnel](assets/goal-user-journey.jpg)
+![Goal funnel](assets/goal-user-journey.png)
 
 ![Goal funnel](assets/goal-funnel-3.jpg)
 
