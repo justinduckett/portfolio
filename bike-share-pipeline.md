@@ -4,32 +4,52 @@
 This project involved designing a fully automated, serverless data pipeline to capture real-time transit data from the Toronto Parking Authority. It moves away from manual data extraction to a cloud-native architecture, building a historical data warehouse in Google BigQuery and visualizing network performance in a live dashboard.
 
 ### Tools used
-Data Ingestion: Python (Pandas, Requests, Pandas-GBQ)
-Automation: GitHub Actions (YAML Configuration, Cron Scheduling)
-Cloud Warehousing: Google BigQuery (Serverless SQL)
-Visualization: Looker Studio (Geospatial Mapping & Time-Series Analysis)
+
+- **Data Ingestion:** Python (Pandas, Requests, Pandas-GBQ)
+- **Automation:** GitHub Actions (YAML Configuration, Cron Scheduling)
+- **Cloud Warehousing:** Google BigQuery (Serverless SQL)
+- **Visualization:** Looker Studio (Geospatial Mapping & Time-Series Analysis)
 
 ### Purpose of the work 
-I built this project to expand my technical skillset beyond traditional analytics into modern data engineering. Specifically, I wanted to learn how to:
-Automate data collection: Moving away from manual exports to building "set and forget" pipelines using Python and cloud tools.
-Work with cloud infrastructure: Gaining hands-on experience with Google BigQuery and serverless architecture without incurring high costs.
-Solve real-world data problems: Taking raw, transient API data and transforming it into a permanent historical record for trend analysis.
+I built this project to expand my technical analytics skillset with modern data engineering. Specifically, I wanted to learn how to:
+
+- **Automate data collection:** Moving away from manual exports to building "set and forget" pipelines using Python and cloud tools.
+- **Work with cloud infrastructure:** Gaining hands-on experience with Google BigQuery and serverless architecture without incurring high costs.
+- **Solve real-world data problems:** Taking raw, transient API data and transforming it into a permanent historical record for trend analysis.
 
 ### Key project phases
-ETL Pipeline Development: Designed a Python-based process to handle the full data lifecycle. 
-extracting live station data (status and metadata) from the Toronto Bike Share GBFS API, 
-transforming it by merging JSON feeds, enriching inventory counts with geospatial coordinates, and normalizing timestamps 
-loading the clean, structured data into Google BigQuery with automated schema handling.
-Serverless Orchestration: Replaced traditional, resource-heavy schedulers (like Airflow) with GitHub Actions. Configured a YAML-based cron schedule to execute the pipeline hourly, utilizing GitHub Secrets to securely manage cloud authentication credentials.
+
+**1. ETL Pipeline Development:** 
+
+I wrote a Python script to handle the full data lifecycle. 
+
+- Extracting live station data (status and metadata) from the Toronto Bike Share GBFS API. 
+- Transforming it by merging JSON feeds, enriching inventory counts with geospatial coordinates, and normalizing timestamps. 
+- Loading the clean, structured data into Google BigQuery with automated schema handling.
+
+**2. Serverless Orchestration:** 
+
+I replaced traditional, resource-heavy schedulers (like Airflow) with GitHub Actions. I configured a YAML-based cron schedule to execute the pipeline hourly, utilizing GitHub Secrets to securely manage cloud authentication credentials.
+
 [Screenshot Idea: Add a screenshot of your GitHub Actions log showing a successful pipeline run (Green Checkmarks).]
-Data Warehousing Strategy: Configured the BigQuery table to support schema evolution, ensuring the database automatically adapts to new data fields from the API without manual intervention. Implemented timestamp normalization logic to standardize irregular data arrival times into clean hourly buckets, optimizing the warehouse for time-series analysis.
+
+**3. Data Warehousing Strategy:** 
+
+I configured the BigQuery table to support schema evolution, ensuring the database automatically adapts to new data fields from the API without manual intervention. I implemented timestamp normalization logic to standardize irregular data arrival times into clean hourly buckets, optimizing the warehouse for time-series analysis.
+
 [Screenshot Idea: Add a screenshot of your BigQuery Schema showing the columns (station_id, lat, lon, num_bikes_available) or a preview of the populated table.]
-Advanced Analytics & Visualization: Leveraged custom SQL queries to perform aggregate filtering that native BI tools could not handle, such as creating histograms of station failure rates. Developed calculated fields to identify and filter out "Zombie Stations" (inactive/offline units) to focus analysis on active fleet performance.
+
+**4 Advanced Analytics & Visualization:** 
+
+I wrote custom SQL queries to perform aggregate filtering that native BI tools like Looker Studio could not handle, such as creating histograms of station failure rates. I developed calculated fields to identify and filter out 'Zombie Stations' (inactive/offline units) to focus analysis on active fleet performance.
+
 [Screenshot Idea: Add a screenshot of your Network Reliability Map or the Station Failure Histogram from Looker Studio.]
 
-SQL Example: Identifying "At-Risk" Stations To move beyond simple averages, I wrote custom SQL to categorize stations based on their failure frequency. This query segments the network into performance buckets, isolating "Zombie" stations from those that are critically failing but operational.
+**SQL Example:** 
 
-'''
+In order to identify 'at-risk' Stations, I wrote custom SQL to categorize stations based on their failure frequency. This query segments the network into performance buckets. This helps group stations that are completely empty from those that are critically failing but operational.
+
+```
 SELECT
   CASE
     WHEN stockout_rate = 1.0 THEN '100% (Inactive)'
@@ -50,15 +70,18 @@ FROM (
 )
 GROUP BY 1
 ORDER BY 1
-'''
-
+```
 ### Results and impact
-100% Automation: Successfully deployed a "set and forget" pipeline that ingests data 24/7 with zero manual intervention, ensuring continuous data availability.
-Cost Optimization: Architected the entire solution to run for $0.00/month by leveraging the Free Tier limits of Google Cloud and GitHub Actions, demonstrating high-value delivery with zero infrastructure cost.
-Operational Insight: The analysis revealed that ~8% of the network consists of inactive "Zombie Stations." Furthermore, it identified the Top 10 active stations with the highest failure rates, providing a prioritized target list for operational rebalancing teams to improve service reliability.
+
+- **100% Automation:** Successfully deployed a "set and forget" pipeline that ingests data 24/7 with zero manual intervention, ensuring continuous data availability.
+- **Cost Optimization:** Architected the entire solution to run for $0.00/month by leveraging the Free Tier limits of Google Cloud and GitHub Actions, demonstrating high-value delivery with zero infrastructure cost.
+- **Operational Insight:** The analysis revealed that ~8% of the network consists of inactive 'Zombie Stations'. Furthermore, it identified the Top 10 active stations with the highest failure rates, providing a prioritized target list for operational rebalancing teams to improve service reliability.
 
 ### Links
-$$Link to GitHub Repository$$
+
+- Link to GitHub Repository <a href="{{ 'https://github.com/justinduckett/toronto-bikeshare-pipeline' | relative_url }}" target="_blank" rel="noopener noreferrer">
+</a>
+
 $$Link to Live Dashboard$$
 
 
