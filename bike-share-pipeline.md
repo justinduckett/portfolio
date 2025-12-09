@@ -3,6 +3,8 @@
 ### Summary 
 This project involved designing a fully automated, serverless data pipeline to capture real-time transit data from the Toronto Parking Authority. It moves away from manual data extraction to a cloud-native architecture, building a historical data warehouse in Google BigQuery and visualizing network performance in a live dashboard.
 
+![Bike Share dashboard](assets/bike-share-bubble-chart.png)
+
 ### Tools used
 
 - **Data Ingestion:** Python (Pandas, Requests, Pandas-GBQ)
@@ -86,7 +88,6 @@ ORDER BY 1
 - <a href="{{ 'https://lookerstudio.google.com/s/tGmMFc8I_jU' | relative_url }}" target="_blank" rel="noopener noreferrer">
   Link to the Bike Share Toronto Looker Studio report
 </a>
-
 
 
 
