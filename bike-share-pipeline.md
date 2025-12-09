@@ -82,7 +82,8 @@ ORDER BY 1
 - Link to GitHub Repository <a href="{{ 'https://github.com/justinduckett/toronto-bikeshare-pipeline' | relative_url }}" target="_blank" rel="noopener noreferrer">
 </a>
 
-$$Link to Live Dashboard$$
+- Link to Looker Studio report <a href="{{ 'https://lookerstudio.google.com/s/tGmMFc8I_jU' | relative_url }}" target="_blank" rel="noopener noreferrer">
+</a>
 
 
 
