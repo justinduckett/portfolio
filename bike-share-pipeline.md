@@ -79,12 +79,13 @@ ORDER BY 1
 
 ### Links
 
-- Link to GitHub Repository <a href="{{ 'https://github.com/justinduckett/toronto-bikeshare-pipeline' | relative_url }}" target="_blank" rel="noopener noreferrer">
+- <a href="{{ 'https://github.com/justinduckett/toronto-bikeshare-pipeline' | relative_url }}" target="_blank" rel="noopener noreferrer">
+  Link to the Bike Share Toronto GitHub Repository
 </a>
 
-- Link to Looker Studio report <a href="{{ 'https://lookerstudio.google.com/s/tGmMFc8I_jU' | relative_url }}" target="_blank" rel="noopener noreferrer">
+- <a href="{{ 'https://lookerstudio.google.com/s/tGmMFc8I_jU' | relative_url }}" target="_blank" rel="noopener noreferrer">
+  Link to the Bike Share Toronto Looker Studio report
 </a>
-
 
 
 
