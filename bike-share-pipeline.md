@@ -53,14 +53,22 @@ In order to identify 'at-risk' Stations, I wrote custom SQL to categorize statio
 
 ```
 SELECT
+  name,
+  stockout_rate,
   CASE
-    WHEN stockout_rate = 1.0 THEN '100% (Inactive)'
+    WHEN stockout_rate = 1.0 THEN 'Always empty'
     WHEN stockout_rate >= 0.9 THEN '90% - 99% (Critical)'
     WHEN stockout_rate >= 0.8 THEN '80% - 90%'
     WHEN stockout_rate >= 0.7 THEN '70% - 80%'
-    ELSE '0% - 70% (Healthy)'
-  END as reliability_bucket,
-  COUNT(*) as station_count
+    WHEN stockout_rate >= 0.6 THEN '60% - 70%'
+    WHEN stockout_rate >= 0.5 THEN '50% - 60%'
+    WHEN stockout_rate >= 0.4 THEN '40% - 50%'
+    WHEN stockout_rate >= 0.3 THEN '30% - 40%'
+    WHEN stockout_rate >= 0.2 THEN '20% - 30%'
+    WHEN stockout_rate >= 0.1 THEN '10% - 20%'
+    WHEN stockout_rate >= 0.01 THEN '1% - 10%'
+    ELSE '0%'
+  END as reliability_bucket
 FROM (
   SELECT
     name,
@@ -70,8 +78,6 @@ FROM (
   GROUP BY
     name
 )
-GROUP BY 1
-ORDER BY 1
 ```
 ### Results and impact
 
