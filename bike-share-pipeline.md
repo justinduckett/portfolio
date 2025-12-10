@@ -3,7 +3,7 @@
 ### Summary 
 This project involved designing a fully automated, serverless data pipeline to capture real-time transit data from the Toronto Parking Authority. It moves away from manual data extraction to a cloud-native architecture, building a historical data warehouse in Google BigQuery and visualizing network performance in a live dashboard.
 
-![Bike Share dashboard](assets/bike-share-bubble-chart.png)
+![Bike Share dashboard](assets/bikeshare-bubble-chart.png)
 
 ### Tools used
 
@@ -33,19 +33,19 @@ I wrote a Python script to handle the full data lifecycle.
 
 I replaced traditional, resource-heavy schedulers (like Airflow) with GitHub Actions. I configured a YAML-based cron schedule to execute the pipeline hourly, utilizing GitHub Secrets to securely manage cloud authentication credentials.
 
-[Screenshot Idea: Add a screenshot of your GitHub Actions log showing a successful pipeline run (Green Checkmarks).]
+![Bike Share Github actions](assets/bikeshare-github-actions.png)
 
 **3. Data Warehousing Strategy:** 
 
 I configured the BigQuery table to support schema evolution, ensuring the database automatically adapts to new data fields from the API without manual intervention. I implemented timestamp normalization logic to standardize irregular data arrival times into clean hourly buckets, optimizing the warehouse for time-series analysis.
 
-[Screenshot Idea: Add a screenshot of your BigQuery Schema showing the columns (station_id, lat, lon, num_bikes_available) or a preview of the populated table.]
+![Bike Share Biqquery schema](assets/bikeshare-bigquery-schema.png)
 
 **4 Advanced Analytics & Visualization:** 
 
 I wrote custom SQL queries to perform aggregate filtering that native BI tools like Looker Studio could not handle, such as creating histograms of station failure rates. I developed calculated fields to identify and filter out 'Zombie Stations' (inactive/offline units) to focus analysis on active fleet performance.
 
-[Screenshot Idea: Add a screenshot of your Network Reliability Map or the Station Failure Histogram from Looker Studio.]
+![Bike Share dashboard](assets/bikeshare-stockout-rate.png)
 
 **SQL Example:** 
 
