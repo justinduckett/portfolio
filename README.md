@@ -14,7 +14,7 @@ This project involved designing a fully automated, serverless data pipeline to c
 
 _Tools: Python (Pandas, Requests, Pandas-GBQ), SQL, dbt, GitHub Actions, Google BigQuery, Looker Studio_
 
-![Bike Share Toronto dashboard](assets/bike-share-bubble-chart.png)
+![Bike Share Toronto dashboard](assets/bikeshare-bubble-chart.png)
 
 ### [3. Enterprise analytics: Tracking Full User Journeys & Optimizing Conversions](enterprise-analytics.md)
 
@@ -23,8 +23,6 @@ I led an enterprise initiative to implement a unified analytics system across al
 _Tools: Google Tag Manager, Google Analytics 4, Looker Studio, HTML, JavaScript, Data Privacy Impact Assessment (PIA)_
 
 ![Goal funnel](assets/goal-user-journey.png)
-
-![Goal funnel](assets/goal-funnel-3.jpg)
 
 ### [4. Automating executive insights: Ontario.ca monthly analytics report](monthly-reports.md)
 
