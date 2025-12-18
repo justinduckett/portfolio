@@ -4,7 +4,7 @@
 
 I created an automated monthly analytics report for Ontario’s flagship website, Ontario.ca. The report helps leadership teams quickly understand key trends, public interests, and the impact of marketing campaigns. It is distributed monthly to senior audiences, including the Premier’s Office, Ontario.ca Executive Table, and Directors of Communications.
 
-![Monthly product report](assets/trending pages.jpg)
+![Monthly product report](assets/monthly-report-new-trending.png)
 
 View a sample <a href="{{ '/assets/monthly-report-sept-2025.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">
   PDF export of the September 2025 Ontario.ca Monthly Report
