@@ -15,7 +15,7 @@ During an LCBO strike in July 2024, the Ontario Government rolled out a searchab
 
 _Tools: Python, JupyterLab, Google Maps API, Google Tag Manager, Google Analytics 4, Looker Studio_
 
-![Alcoholic beverage map](assets/alcohol map.PNG)
+![Alcoholic beverage map](assets/alcohol-map.PNG)
 
 
 ### [3. Enterprise analytics: Tracking Full User Journeys & Optimizing Conversions](enterprise-analytics.md)
@@ -33,4 +33,4 @@ I created an automated monthly analytics report for Ontario’s flagship website
 
 _Tools: Python, pandas, NumPy, Google Colab, Google Analytics API, Google Analytics 4, Google Sheets, Looker Studio_
 
-![Monthly product report](assets/trending pages.jpg)
+![Monthly product report](assets/monthly-report-new-trending.png)
