@@ -12,58 +12,48 @@
     <![endif]-->
     {% include head-custom.html %}
 
-    <!-- Force content area into the right-hand column -->
     <style>
-      .content-area {
-        grid-column: 2; /* Right-hand column of the theme */
+      /* 1. Darken text for better readability */
+      body { color: #222 !important; }
+      h1, h2, h3, h4, h5, h6 { color: #111 !important; }
+      header p { color: #333 !important; }
+    
+      /* 2. Desktop Width & Layout */
+      @media screen and (min-width: 64em) {
+        .wrapper {
+          max-width: 85rem !important; /* Widens the total site container */
+          display: flex !important;    /* Uses flexbox for more stability than grid */
+          justify-content: space-between;
+        }
+    
+        header {
+          width: 260px !important;    /* Keeps your sidebar a consistent width */
+          flex-shrink: 0;
+          position: sticky;
+          top: 2rem;
+          height: fit-content;
+        }
+    
+        /* FIX: Constrains the headshot size so it doesn't break the layout */
+        header img {
+          max-width: 200px !important; 
+          height: auto;
+          border-radius: 50%;         /* Keeps it circular if your source isn't */
+        }
+    
+        .content-area {
+          flex-grow: 1;               /* Forces the right column to take up all remaining space */
+          margin-left: 5rem;          /* Adds a clean gap between the two columns */
+          width: auto !important;
+        }
       }
-    </style>
-
-    <style>
-      /* Add small external link icon to external links in content area */
+    
+      /* 3. External Link Icon Style */
       .content-area a[target="_blank"]::after {
         content: " ↗";
         font-size: 0.8em;
       }
     </style>
-
-    <style>
-      /* Darken the main body text and headings */
-      body {
-        color: #222 !important; /* A very dark grey/black */
-      }
-
-      h1, h2, h3, h4, h5, h6 {
-        color: #111 !important; /* Almost pure black for headings */
-      }
-
-      /* Darken the text in the left-hand header column */
-      header p {
-        color: #333 !important;
-      }
-
-      /* Ensure the main project content is also dark */
-      .content-area {
-        color: #222 !important;
-      }
-
-      /* Increase site width on large screens */
-    @media screen and (min-width: 64em) {
-      .wrapper {
-        max-width: 80rem !important; /* Increased from 64rem to 80rem (~25% wider) */
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1fr 3fr; /* Gives the right column more proportional share */
-        gap: 2rem;
-      }
-
-      header {
-        width: auto !important; /* Allows header to behave as a grid item */
-        margin-right: 0 !important;
-      }
-    }
-      
-</style>
     
   </head>
   <body>
