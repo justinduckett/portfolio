@@ -77,25 +77,24 @@
           width: 100% !important;
           position: static !important;
           
-          /* 1. Clear any existing borders causing the "double line" */
-          border: none !important;
+          /* FIX 1: "height: auto" forces the box to stretch to fit all your text
+             so the line doesn't cut through the middle. */
+          height: auto !important; 
           
-          /* Spacing for the content inside the header */
+          border: none !important;
           margin-bottom: 0; 
           padding-bottom: 2rem;
-          position: relative; /* Necessary for drawing the custom line */
+          position: relative;
         }
     
-        /* 2. Draw the single, responsive line */
+        /* The Divider Line */
         header::after {
           content: "";
           display: block;
-          width: 85%;         /* Line width (doesn't touch edges) */
-          height: 1px;        /* Line thickness */
-          background: #e0e0e0;/* Line color */
-          
-          /* Centers the line and adds vertical spacing */
-          margin: 0 auto;     
+          width: 85%;
+          height: 1px;
+          background: #e0e0e0;
+          margin: 0 auto;
           position: absolute;
           bottom: 0;
           left: 0;
@@ -105,8 +104,19 @@
         .content-area {
           width: 100% !important;
           margin: 0 !important;
-          padding-top: 2rem; /* Adds space between the line and your projects */
+          padding-top: 2rem;
         }
+        
+        /* FIX 2: Hides the default footer and its line */
+        .site-footer, footer {
+          display: none !important;
+          border: none !important;
+        }
+      }
+    
+      /* Ensure footer line is removed on Desktop too if you don't want it there */
+      .site-footer, footer {
+        border-top: none !important;
       }
     </style>
     
