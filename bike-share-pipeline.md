@@ -3,16 +3,22 @@
 ### Summary 
 This project involved designing a fully automated, serverless data pipeline to capture real-time transit data from the Toronto Parking Authority. It utilizes a modern ELT (Extract, Load, Transform) architecture, ingesting raw API data into Google BigQuery and using dbt (data build tool) to transform it into trusted, historical records for a live dashboard.
 
+<p>
+  <a href="{{ 'https://lookerstudio.google.com/s/tGmMFc8I_jU' | relative_url }}" target="_blank" rel="noopener noreferrer">
+    Link to the Toronto Bike Share Looker Studio report ↗
+  </a>
+</p>
 
 ![Bike Share dashboard](assets/bikeshare-bubble-chart.png)
 
+
 ### Tools used
 
-- Data Ingestion: Python (Pandas, Requests, Pandas-GBQ)
-- Transformation: dbt Core (SQL Modeling, Automated Testing)
-- Orchestration: GitHub Actions (CI/CD, Cron Scheduling)
-- Cloud Warehousing: Google BigQuery
-- Visualization: Looker Studio 
+- _Python (Pandas, Requests, Pandas-GBQ)_ - data ingestion
+- _dbt_ - data transformation and SQL modeling
+- _GitHub Actions_ - data piepline orchestration
+- _Google BigQuery_ - cloud warehousing
+- _Looker Studio_ - visualization and report building
 
 ### Purpose of the work 
 I built this project to expand my technical analytics skillset with modern data engineering. Specifically, I wanted to demonstrate:
@@ -100,11 +106,11 @@ FROM (
 ### Links
 
 - <a href="{{ 'https://github.com/justinduckett/toronto-bikeshare-pipeline' | relative_url }}" target="_blank" rel="noopener noreferrer">
-  Link to the Bike Share Toronto GitHub Repository
+  Link to the Bike Share Toronto GitHub Repository ↗
 </a>
 
 - <a href="{{ 'https://lookerstudio.google.com/s/tGmMFc8I_jU' | relative_url }}" target="_blank" rel="noopener noreferrer">
-  Link to the Bike Share Toronto Looker Studio report
+  Link to the Bike Share Toronto Looker Studio report ↗
 </a>
 
 
