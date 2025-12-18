@@ -2,7 +2,7 @@
 
 ### [1. End-to-End Serverless Data Pipeline: Toronto Bike Share Analytics](bike-share-pipeline.md)
 
-This project involved designing a fully automated, serverless data pipeline to capture real-time transit data from the Toronto Parking Authority. It utilizes a modern **ELT (Extract, Load, Transform)** architecture, ingesting raw API data into Google BigQuery and using **dbt (data build tool)** to transform it into trusted, historical records for a live dashboard.
+This project involved designing a fully automated, serverless data pipeline to capture real-time transit data from the Toronto Parking Authority. It utilizes a modern ELT (Extract, Load, Transform) architecture, ingesting raw API data into Google BigQuery and using dbt (data build tool) to transform it into trusted, historical records for a live dashboard.
 
 _Tools: Python, SQL, dbt, GitHub Actions, Google BigQuery, Looker Studio_
 
