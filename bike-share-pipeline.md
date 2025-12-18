@@ -9,22 +9,16 @@ This project involved designing a fully automated, serverless data pipeline to c
 ### Tools used
 
 - **Data Ingestion:** Python (Pandas, Requests, Pandas-GBQ)
-
 - **Transformation:** dbt Core (SQL Modeling, Automated Testing)
-
 - **Orchestration:** GitHub Actions (CI/CD, Cron Scheduling)
-
 - **Cloud Warehousing:** Google BigQuery
-
 - **Visualization:** Looker Studio 
 
 ### Purpose of the work 
 I built this project to expand my technical analytics skillset with modern data engineering. Specifically, I wanted to demonstrate:
 
 - **Engineer robust pipelines:** Moving away from manual exports to building "set and forget" pipelines using Python and cloud tools.
-
 - **Implement software best practices:** Treating data as code by using dbt to version-control my SQL logic and automate data quality testing.
-
 - **Solve real-world data problems:** Taking raw, transient API data and transforming it into a permanent historical record for trend analysis.
 
 ### Key project phases
@@ -98,11 +92,8 @@ FROM (
 ### Results and impact
 
 - **Data Trust & Quality:** Integrated automated testing via dbt, ensuring 100% confidence in the data accuracy before it reaches stakeholders.
-
 - **Zero-Touch Automation:** Successfully deployed a "set and forget" pipeline that runs 24/7. The system self-corrects and alerts on failure.
-
 - **Cost Optimization:** Architected the entire solution to run for $0.00/month by leveraging the Free Tier limits of Google Cloud and GitHub Actions, demonstrating high-value delivery with zero infrastructure cost.
-
 - **Operational Insight:** The analysis identified that ~8% of the network consists of ‘Zombie Stations’, providing a prioritized target list for operational rebalancing teams.
 
 
