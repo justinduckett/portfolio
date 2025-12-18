@@ -66,8 +66,7 @@
         }
       }
     
-      /* --- 4. MOBILE/TABLET LAYOUT (Stacked) --- */
-      /* If screen is smaller than ~1024px, force a clean stack */
+    /* --- 4. MOBILE/TABLET LAYOUT (Stacked) --- */
       @media screen and (max-width: 63.9em) {
         .wrapper {
           display: block !important;
@@ -77,21 +76,37 @@
         header {
           width: 100% !important;
           position: static !important;
-          border-bottom: 1px solid #e0e0e0;
-          margin-bottom: 2rem;
-          padding-bottom: 1rem;
+          
+          /* 1. Clear any existing borders causing the "double line" */
+          border: none !important;
+          
+          /* Spacing for the content inside the header */
+          margin-bottom: 0; 
+          padding-bottom: 2rem;
+          position: relative; /* Necessary for drawing the custom line */
+        }
+    
+        /* 2. Draw the single, responsive line */
+        header::after {
+          content: "";
+          display: block;
+          width: 85%;         /* Line width (doesn't touch edges) */
+          height: 1px;        /* Line thickness */
+          background: #e0e0e0;/* Line color */
+          
+          /* Centers the line and adds vertical spacing */
+          margin: 0 auto;     
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
         }
     
         .content-area {
           width: 100% !important;
           margin: 0 !important;
+          padding-top: 2rem; /* Adds space between the line and your projects */
         }
-      }
-    
-      /* External Link Icon */
-      .content-area a[target="_blank"]::after {
-        content: " ↗";
-        font-size: 0.8em;
       }
     </style>
     
