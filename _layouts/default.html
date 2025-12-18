@@ -13,24 +13,32 @@
     {% include head-custom.html %}
 
     <style>
-      /* --- 1. VISUAL STYLE (Darker Text) --- */
+      /* --- 1. VISUAL STYLE --- */
       body { 
         color: #222 !important; 
         line-height: 1.6;
       }
-      h1, h2, h3, h4, h5, h6 { color: #111 !important; }
+      /* Remove the default theme lines under Headings */
+      h1, h2, h3, h4, h5, h6 { 
+        color: #111 !important; 
+        border-bottom: none !important; /* Kills the line inside your text */
+      }
       header p { color: #333 !important; }
     
-      /* --- 2. LAYOUT RESET --- */
-      /* This effectively "deletes" the theme's narrow reading limits */
-      section, 
-      .content-area,
-      .wrapper {
+      /* --- 2. RESET LAYOUT & BORDERS (The Nuclear Option) --- */
+      section, .content-area, .wrapper, header, footer, .site-footer {
         max-width: none !important;
         width: auto !important;
+        border: none !important; /* Removes all default theme borders */
+        box-shadow: none !important;
+      }
+      
+      /* Force hide the footer completely if you don't use it */
+      .site-footer, footer {
+        display: none !important; 
       }
     
-      /* Image Constraint (Prevents giant headshot) */
+      /* Headshot constraint */
       header img {
         max-width: 200px !important;
         height: auto;
@@ -42,31 +50,29 @@
       /* --- 3. DESKTOP LAYOUT (Side-by-Side) --- */
       @media screen and (min-width: 64em) {
         .wrapper {
-          /* Sets the total width of the site on desktop */
-          max-width: 90% !important; /* Uses 90% of screen to be very wide */
-          width: 1000px !important;  /* The "Limit" for huge monitors. Increase to 1600px for super-wide, decrease to 1200px to keep it compact. */
+          max-width: 90% !important; 
+          width: 1400px !important;  
           margin: 0 auto;
-          
           display: flex !important;
           flex-direction: row;
-          align-items: flex-start; /* Aligns tops of columns */
-          gap: 5rem; /* Large safe space between sidebar and content */
+          align-items: flex-start; 
+          gap: 5rem; 
         }
     
         header {
-          flex: 0 0 260px !important; /* Sidebar is rigid: 260px always */
+          flex: 0 0 260px !important;
           width: 260px !important;
           position: sticky;
           top: 2rem;
         }
     
         .content-area {
-          flex: 1 1 auto !important; /* Content takes ALL remaining space */
-          min-width: 0; /* CRITICAL: Prevents content from overflowing/overlapping */
+          flex: 1 1 auto !important;
+          min-width: 0;
         }
       }
     
-    /* --- 4. MOBILE/TABLET LAYOUT (Stacked) --- */
+      /* --- 4. MOBILE LAYOUT (Stacked) --- */
       @media screen and (max-width: 63.9em) {
         .wrapper {
           display: block !important;
@@ -76,47 +82,33 @@
         header {
           width: 100% !important;
           position: static !important;
+          height: auto !important;
+          margin-bottom: 30px !important;
           
-          /* FIX 1: "height: auto" forces the box to stretch to fit all your text
-             so the line doesn't cut through the middle. */
-          height: auto !important; 
-          
-          border: none !important;
-          margin-bottom: 0; 
-          padding-bottom: 2rem;
-          position: relative;
+          /* THE ONLY LINE WE WANT: */
+          /* We use standard border-bottom combined with padding. */
+          /* This guarantees the line is always pushed to the bottom of your text. */
+          border-bottom: 1px solid #e0e0e0 !important; 
+          padding-bottom: 30px !important;
         }
     
-        /* The Divider Line */
+        /* Remove the pseudo-element we tried before to avoid "ghost lines" */
         header::after {
-          content: "";
-          display: block;
-          width: 85%;
-          height: 1px;
-          background: #e0e0e0;
-          margin: 0 auto;
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
+          content: none !important; 
+          display: none !important;
         }
     
         .content-area {
           width: 100% !important;
           margin: 0 !important;
-          padding-top: 2rem;
-        }
-        
-        /* FIX 2: Hides the default footer and its line */
-        .site-footer, footer {
-          display: none !important;
-          border: none !important;
+          padding-top: 0;
         }
       }
     
-      /* Ensure footer line is removed on Desktop too if you don't want it there */
-      .site-footer, footer {
-        border-top: none !important;
+      /* External Link Icon */
+      .content-area a[target="_blank"]::after {
+        content: " ↗";
+        font-size: 0.8em;
       }
     </style>
     
