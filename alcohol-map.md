@@ -4,7 +4,7 @@
 
 During an LCBO strike in July 2024, the Ontario Government rolled out a searchable and interactive map to help consumers find alternative alcohol retailers across the province. I led the geocoding of over 9,000 address locations for the map, as well as analytics implementation.
 
-![Alcoholic beverage map](assets/alcohol map.PNG)
+![Alcoholic beverage map](assets/alcohol-map.PNG)
 
 ### Tools used:
 
