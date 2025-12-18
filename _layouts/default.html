@@ -13,45 +13,69 @@
     {% include head-custom.html %}
 
     <style>
-      /* 1. Darken text for better readability */
-      body { color: #222 !important; }
+      /* 1. Global Readability Improvements */
+      body { 
+        color: #222 !important; 
+        line-height: 1.6; /* Adds a bit of breathing room for text */
+      }
       h1, h2, h3, h4, h5, h6 { color: #111 !important; }
       header p { color: #333 !important; }
     
-      /* 2. Desktop Width & Layout */
+      /* 2. Layout & Responsiveness */
+      .wrapper {
+        max-width: 90% !important; /* Uses percentage of screen for fluid width */
+        margin: 0 auto;
+        padding: 20px;
+      }
+    
+      /* Constraint for the headshot */
+      header img {
+        max-width: 200px !important;
+        height: auto;
+        border-radius: 50%;
+        display: block;
+        margin-bottom: 1rem;
+      }
+    
+      /* Desktop Styles (Widths > 1024px) */
       @media screen and (min-width: 64em) {
         .wrapper {
-          max-width: 85rem !important; /* Widens the total site container */
-          display: flex !important;    /* Uses flexbox for more stability than grid */
-          justify-content: space-between;
+          max-width: 1200px !important; /* Upper limit for very wide monitors */
+          display: flex !important;
+          align-items: flex-start;
+          gap: 60px; /* Consistent spacing between columns */
         }
     
         header {
-          width: 260px !important;    /* Keeps your sidebar a consistent width */
-          flex-shrink: 0;
+          flex: 0 0 260px !important; /* Sidebar stays exactly 260px */
           position: sticky;
           top: 2rem;
-          height: fit-content;
         }
     
-        /* FIX: Constrains the headshot size so it doesn't break the layout */
-        header img {
-          max-width: 200px !important; 
-          height: auto;
-          border-radius: 50%;         /* Keeps it circular if your source isn't */
-        }
-    
-        .content-area {
-          flex-grow: 1;               /* Forces the right column to take up all remaining space */
-          margin-left: 5rem;          /* Adds a clean gap between the two columns */
-          width: auto !important;
+        /* This targets BOTH the homepage and project pages */
+        .content-area, 
+        section { 
+          flex: 1 1 auto !important; /* Right column takes remaining space */
+          min-width: 0; /* Critical fix for text cutting off */
         }
       }
     
-      /* 3. External Link Icon Style */
+      /* 3. External Link Icon */
       .content-area a[target="_blank"]::after {
         content: " ↗";
         font-size: 0.8em;
+      }
+    
+      /* 4. Fix for Mobile (Stacking columns) */
+      @media screen and (max-width: 63.9em) {
+        .wrapper {
+          display: block !important;
+          max-width: 95% !important;
+        }
+        header {
+          width: 100% !important;
+          margin-bottom: 2rem;
+        }
       }
     </style>
     
