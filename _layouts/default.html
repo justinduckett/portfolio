@@ -46,6 +46,22 @@
       .content-area {
         color: #222 !important;
       }
+
+      /* Increase site width on large screens */
+    @media screen and (min-width: 64em) {
+      .wrapper {
+        max-width: 80rem !important; /* Increased from 64rem to 80rem (~25% wider) */
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 3fr; /* Gives the right column more proportional share */
+        gap: 2rem;
+      }
+
+      header {
+        width: auto !important; /* Allows header to behave as a grid item */
+        margin-right: 0 !important;
+      }
+    }
       
 </style>
     
