@@ -13,22 +13,24 @@
     {% include head-custom.html %}
 
     <style>
-      /* 1. Global Readability Improvements */
+      /* --- 1. VISUAL STYLE (Darker Text) --- */
       body { 
         color: #222 !important; 
-        line-height: 1.6; /* Adds a bit of breathing room for text */
+        line-height: 1.6;
       }
       h1, h2, h3, h4, h5, h6 { color: #111 !important; }
       header p { color: #333 !important; }
     
-      /* 2. Layout & Responsiveness */
+      /* --- 2. LAYOUT RESET --- */
+      /* This effectively "deletes" the theme's narrow reading limits */
+      section, 
+      .content-area,
       .wrapper {
-        max-width: 90% !important; /* Uses percentage of screen for fluid width */
-        margin: 0 auto;
-        padding: 20px;
+        max-width: none !important;
+        width: auto !important;
       }
     
-      /* Constraint for the headshot */
+      /* Image Constraint (Prevents giant headshot) */
       header img {
         max-width: 200px !important;
         height: auto;
@@ -37,45 +39,59 @@
         margin-bottom: 1rem;
       }
     
-      /* Desktop Styles (Widths > 1024px) */
+      /* --- 3. DESKTOP LAYOUT (Side-by-Side) --- */
       @media screen and (min-width: 64em) {
         .wrapper {
-          max-width: 1200px !important; /* Upper limit for very wide monitors */
+          /* Sets the total width of the site on desktop */
+          max-width: 90% !important; /* Uses 90% of screen to be very wide */
+          width: 1400px !important;  /* Cap it at 1400px so it doesn't get too crazy on huge monitors */
+          margin: 0 auto;
+          
           display: flex !important;
-          align-items: flex-start;
-          gap: 60px; /* Consistent spacing between columns */
+          flex-direction: row;
+          align-items: flex-start; /* Aligns tops of columns */
+          gap: 5rem; /* Large safe space between sidebar and content */
         }
     
         header {
-          flex: 0 0 260px !important; /* Sidebar stays exactly 260px */
+          flex: 0 0 260px !important; /* Sidebar is rigid: 260px always */
+          width: 260px !important;
           position: sticky;
           top: 2rem;
         }
     
-        /* This targets BOTH the homepage and project pages */
-        .content-area, 
-        section { 
-          flex: 1 1 auto !important; /* Right column takes remaining space */
-          min-width: 0; /* Critical fix for text cutting off */
+        .content-area {
+          flex: 1 1 auto !important; /* Content takes ALL remaining space */
+          min-width: 0; /* CRITICAL: Prevents content from overflowing/overlapping */
         }
       }
     
-      /* 3. External Link Icon */
-      .content-area a[target="_blank"]::after {
-        content: " ↗";
-        font-size: 0.8em;
-      }
-    
-      /* 4. Fix for Mobile (Stacking columns) */
+      /* --- 4. MOBILE/TABLET LAYOUT (Stacked) --- */
+      /* If screen is smaller than ~1024px, force a clean stack */
       @media screen and (max-width: 63.9em) {
         .wrapper {
           display: block !important;
-          max-width: 95% !important;
+          padding: 20px;
         }
+        
         header {
           width: 100% !important;
+          position: static !important;
+          border-bottom: 1px solid #e0e0e0;
           margin-bottom: 2rem;
+          padding-bottom: 1rem;
         }
+    
+        .content-area {
+          width: 100% !important;
+          margin: 0 !important;
+        }
+      }
+    
+      /* External Link Icon */
+      .content-area a[target="_blank"]::after {
+        content: " ↗";
+        font-size: 0.8em;
       }
     </style>
     
