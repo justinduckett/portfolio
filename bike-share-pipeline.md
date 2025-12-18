@@ -1,55 +1,71 @@
 ## End-to-End Serverless Data Pipeline: Toronto Bike Share Analytics
 
 ### Summary 
-This project involved designing a fully automated, serverless data pipeline to capture real-time transit data from the Toronto Parking Authority. It moves away from manual data extraction to a cloud-native architecture, building a historical data warehouse in Google BigQuery and visualizing network performance in a live dashboard.
+This project involved designing a fully automated, serverless data pipeline to capture real-time transit data from the Toronto Parking Authority. It utilizes a modern **ELT (Extract, Load, Transform)** architecture, ingesting raw API data into Google BigQuery and using **dbt (data build tool)** to transform it into trusted, historical records for a live dashboard.
+
 
 ![Bike Share dashboard](assets/bikeshare-bubble-chart.png)
 
 ### Tools used
 
 - **Data Ingestion:** Python (Pandas, Requests, Pandas-GBQ)
-- **Automation:** GitHub Actions (YAML Configuration, Cron Scheduling)
-- **Cloud Warehousing:** Google BigQuery (Serverless SQL)
-- **Visualization:** Looker Studio (Geospatial Mapping & Time-Series Analysis)
+
+- **Transformation:** dbt Core (SQL Modeling, Automated Testing)
+
+- **Orchestration:** GitHub Actions (CI/CD, Cron Scheduling)
+
+- **Cloud Warehousing:** Google BigQuery
+
+- **Visualization:** Looker Studio 
 
 ### Purpose of the work 
-I built this project to expand my technical analytics skillset with modern data engineering. Specifically, I wanted to learn how to:
+I built this project to expand my technical analytics skillset with modern data engineering. Specifically, I wanted to demonstrate:
 
-- **Automate data collection:** Moving away from manual exports to building "set and forget" pipelines using Python and cloud tools.
-- **Work with cloud infrastructure:** Gaining hands-on experience with Google BigQuery and serverless architecture without incurring high costs.
+- **Engineer robust pipelines:** Moving away from manual exports to building "set and forget" pipelines using Python and cloud tools.
+
+- **Implement software best practices:** Treating data as code by using dbt to version-control my SQL logic and automate data quality testing.
+
 - **Solve real-world data problems:** Taking raw, transient API data and transforming it into a permanent historical record for trend analysis.
 
 ### Key project phases
 
-**1. ETL Pipeline Development:** 
+**1. Data Ingestion (Python):** 
 
-I wrote a Python script to handle the full data lifecycle. 
+I wrote a Python script to handle the raw data extraction.
 
-- Extracting live station data (status and metadata) from the Toronto Bike Share GBFS API. 
-- Transforming it by merging JSON feeds, enriching inventory counts with geospatial coordinates, and normalizing timestamps. 
-- Loading the clean, structured data into Google BigQuery with automated schema handling.
+- Extracting live station data (status and metadata) from the Toronto Bike Share GBFS API.
+- Merging disparate JSON feeds and enriching inventory counts with geospatial coordinates.
+- Loading the raw data into Google BigQuery using an append-only strategy to preserve history.
 
-**2. Serverless Orchestration:** 
+**2. Transformation & Modeling (dbt):** 
 
-I replaced traditional, resource-heavy schedulers (like Airflow) with GitHub Actions. I configured a YAML-based cron schedule to execute the pipeline hourly, utilizing GitHub Secrets to securely manage cloud authentication credentials.
+I implemented dbt to manage the transformation layer, moving complex logic out of the BI tool and into version control.
+
+- Modular SQL: I refactored large, messy queries into reusable data models (e.g., ```active_fleet_size```, ```station_health_score```).
+- Automated Testing: I configured tests to run every hour, ensuring no duplicate station IDs or invalid values ever reach the dashboard.
+- Documentation: I defined table schemas and descriptions in code, creating a self-documenting data dictionary.
+
+**3. Serverless Orchestration** 
+
+I replaced traditional, heavy schedulers (like Airflow) with GitHub Actions for a lightweight, serverless approach.
+
+- The pipeline automatically installs dependencies, authenticates securely using dynamic keys, and executes the Python ingestion followed by the dbt transformation.
+- I utilized GitHub Secrets to manage cloud credentials, ensuring high security without hard-coding passwords.
 
 ![Bike Share Github actions](assets/bikeshare-github-actions.png)
 
-**3. Data Warehousing Strategy:** 
+**4. Advanced Analytics & Visualization:** 
 
-I configured the BigQuery table to support schema evolution, ensuring the database automatically adapts to new data fields from the API without manual intervention. I implemented timestamp normalization logic to standardize irregular data arrival times into clean hourly buckets, optimizing the warehouse for time-series analysis.
+By doing the heavy lifting in dbt, the visualization layer became lightweight and fast.
 
-![Bike Share Biqquery schema](assets/bikeshare-bigquery-schema.png)
-
-**4 Advanced Analytics & Visualization:** 
-
-I wrote custom SQL queries to perform aggregate filtering that native BI tools like Looker Studio could not handle, such as creating histograms of station failure rates. I developed calculated fields to identify and filter out 'Zombie Stations' (inactive/offline units) to focus analysis on active fleet performance.
+- I pre-calculated "Stockout Rates" in the data warehouse, allowing Looker Studio to visualize station failure histograms instantly without lagging.
+- I created logic to filter out 'Zombie Stations' (inactive units), ensuring the analysis focuses on active fleet performance.
 
 ![Bike Share dashboard](assets/bikeshare-stockout-rate.png)
 
 **SQL Example:** 
 
-In order to identify 'at-risk' Stations, I wrote custom SQL to categorize stations based on their failure frequency. This query segments the network into performance buckets. This helps group stations that are completely empty from those that are critically failing but operational.
+This is an example of a SQL query I wrote to categorize stations based on stockout rate. This helps group stations that are completely empty from those that are critically failing but operational. 
 
 ```
 SELECT
@@ -81,9 +97,14 @@ FROM (
 ```
 ### Results and impact
 
-- **100% Automation:** Successfully deployed a "set and forget" pipeline that ingests data 24/7 with zero manual intervention, ensuring continuous data availability.
+- **Data Trust & Quality:** Integrated automated testing via dbt, ensuring 100% confidence in the data accuracy before it reaches stakeholders.
+
+- **Zero-Touch Automation:** Successfully deployed a "set and forget" pipeline that runs 24/7. The system self-corrects and alerts on failure.
+
 - **Cost Optimization:** Architected the entire solution to run for $0.00/month by leveraging the Free Tier limits of Google Cloud and GitHub Actions, demonstrating high-value delivery with zero infrastructure cost.
-- **Operational Insight:** The analysis revealed that ~8% of the network consists of inactive 'Zombie Stations'. Furthermore, it identified the Top 10 active stations with the highest failure rates, providing a prioritized target list for operational rebalancing teams to improve service reliability.
+
+- **Operational Insight:** The analysis identified that ~8% of the network consists of ‘Zombie Stations’, providing a prioritized target list for operational rebalancing teams.
+
 
 ### Links
 
