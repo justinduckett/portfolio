@@ -5,7 +5,7 @@ This project involved designing a fully automated, serverless data pipeline to c
 
 <p>
   <a href="{{ 'https://lookerstudio.google.com/s/tGmMFc8I_jU' | relative_url }}" target="_blank" rel="noopener noreferrer">
-    Link to the Toronto Bike Share Looker Studio report ↗
+    Link to the Toronto Bike Share Looker Studio report
   </a>
 </p>
 
@@ -106,11 +106,11 @@ FROM (
 ### Links
 
 - <a href="{{ 'https://github.com/justinduckett/toronto-bikeshare-pipeline' | relative_url }}" target="_blank" rel="noopener noreferrer">
-  Link to the Bike Share Toronto GitHub Repository ↗
+  Link to the Bike Share Toronto GitHub Repository
 </a>
 
 - <a href="{{ 'https://lookerstudio.google.com/s/tGmMFc8I_jU' | relative_url }}" target="_blank" rel="noopener noreferrer">
-  Link to the Bike Share Toronto Looker Studio report ↗
+  Link to the Bike Share Toronto Looker Studio report
 </a>
 
 
