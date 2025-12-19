@@ -14,10 +14,22 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ '/assets/favicon.ico' | relative_url }}">
 
-    <meta property="og:title" content="{{ site.title }}" />
+    <meta property="og:site_name" content="{{ site.title }}" />
+    
+    {% if page.url == "/" %}
+      <meta property="og:title" content="Justin Duckett | Data Engineering & Analytics Portfolio" />
+    {% else %}
+      <meta property="og:title" content="{{ page.title }} | Justin Duckett" />
+    {% endif %}
+    
     <meta property="og:description" content="{{ site.description_line1 }} - {{ site.description_line2 }}" />
-    <meta property="og:image" content="{{ site.logo | relative_url | absolute_url }}" />
+    
+    <meta property="og:image" content="{{ '/assets/social-card.png' | relative_url | absolute_url }}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    
     <meta property="og:url" content="{{ page.url | absolute_url }}" />
+    <meta property="og:type" content="website" />
 
     <style>
       /* --- 1. VISUAL STYLE --- */
