@@ -14,6 +14,11 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ '/assets/favicon.ico' | relative_url }}">
 
+    <meta property="og:title" content="{{ site.title }}" />
+    <meta property="og:description" content="{{ site.description_line1 }} - {{ site.description_line2 }}" />
+    <meta property="og:image" content="{{ site.logo | relative_url | absolute_url }}" />
+    <meta property="og:url" content="{{ page.url | absolute_url }}" />
+
     <style>
       /* --- 1. VISUAL STYLE --- */
       body { 
