@@ -1,6 +1,6 @@
 ## Projects
 
-### [1. End-to-End Serverless Data Pipeline: Toronto Bike Share Analytics](bike-share-pipeline.md)
+### [1. End-to-end serverless data pipeline: Toronto Bike Share analytics](bike-share-pipeline.md)
 
 This project involved designing a fully automated, serverless data pipeline to capture real-time transit data from the Toronto Parking Authority. It utilizes a modern ELT (Extract, Load, Transform) architecture, ingesting raw API data into Google BigQuery and using dbt (data build tool) to transform it into trusted, historical records for a live dashboard.
 
@@ -15,10 +15,10 @@ During an LCBO strike in July 2024, the Ontario Government rolled out a searchab
 
 _Tools: Python, JupyterLab, Google Maps API, Google Tag Manager, Google Analytics 4, Looker Studio_
 
-![Alcoholic beverage map](assets/alcohol-map.PNG)
+![Alcoholic beverage map](assets/alcohol-map.png)
 
 
-### [3. Enterprise analytics: Tracking Full User Journeys & Optimizing Conversions](enterprise-analytics.md)
+### [3. Enterprise analytics: tracking full user journeys & optimizing marketing conversions](enterprise-analytics.md)
 
 I led an enterprise initiative to implement a unified analytics system across all public facing Ontario.ca services, establishing a single, secure view of the end-to-end user journey. The platform now delivers deep insights into user movements and service drop-off points, standardizing data for product teams and executives.
 
