@@ -1,4 +1,4 @@
-## Automated fraud detection engine: fintech transaction analytics
+## Fintech data engineering: Detecting high-value banking fraud
 
 ### Summary
 This project is a fully automated system designed to detect financial fraud in real-time. I built a pipeline that takes raw banking transaction data, cleans it, and checks it for suspicious patterns like users spending unusually high amounts. The final result is a live dashboard that alerts fraud analysts to high-risk activity the moment it happens.
