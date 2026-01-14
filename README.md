@@ -1,12 +1,12 @@
 ## Projects
 
-### [1. End-to-end serverless data pipeline: Toronto Bike Share analytics](bike-share-pipeline.md)
+### [1. Fintech data engineering: Detecting high-value banking fraud](banking-fraud-analytics.md)
 
-This project involved designing a fully automated, serverless data pipeline to capture real-time transit data from the Toronto Parking Authority. It utilizes a modern ELT (Extract, Load, Transform) architecture, ingesting raw API data into Google BigQuery and using dbt (data build tool) to transform it into trusted, historical records for a live dashboard.
+This project is a fully automated system designed to detect financial fraud in real-time. I built a pipeline that takes raw banking transaction data, cleans it, and checks it for suspicious patterns like users spending unusually high amounts. The final result is a live dashboard that alerts fraud analysts to high-risk activity the moment it happens.
 
-_Tools: Python, SQL, dbt, GitHub Actions, Google BigQuery, Looker Studio_
+_Tools: Python, SQL, dbt (data build tool), GitHub Actions, Google BigQuery, Looker Studio_
 
-![Bike Share Toronto dashboard](assets/bikeshare-bubble-chart.png)
+![Live Operational Dashboard showing real-time fraud alerts.](assets/banking-fraud-dashboard.png)
 
 
 ### [2. Geocoding 9,000 addresses into a public map visited by 450k+ Ontarians](alcohol-map.md)
@@ -18,7 +18,7 @@ _Tools: Python, JupyterLab, Google Maps API, Google Tag Manager, Google Analytic
 ![Alcoholic beverage map](assets/alcohol-map.png)
 
 
-### [3. Enterprise analytics: tracking full user journeys & optimizing marketing conversions](enterprise-analytics.md)
+### [3. Enterprise web analytics: Tracking full user journeys & optimizing marketing conversions](enterprise-analytics.md)
 
 I led an enterprise initiative to implement a unified analytics system across all public facing Ontario.ca services, establishing a single, secure view of the end-to-end user journey. The platform now delivers deep insights into user movements and service drop-off points, standardizing data for product teams and executives.
 
@@ -34,3 +34,11 @@ I created an automated monthly analytics report for Ontario’s flagship website
 _Tools: Python, pandas, NumPy, Google Colab, Google Analytics API, Google Analytics 4, Google Sheets, Looker Studio_
 
 ![Monthly product report](assets/monthly-report-new-trending.png)
+
+### [5. End-to-end serverless data pipeline: Toronto Bike Share analytics](bike-share-pipeline.md)
+
+This project involved designing a fully automated, serverless data pipeline to capture real-time transit data from the Toronto Parking Authority. It utilizes a modern ELT (Extract, Load, Transform) architecture, ingesting raw API data into Google BigQuery and using dbt (data build tool) to transform it into trusted, historical records for a live dashboard.
+
+_Tools: Python, SQL, dbt, GitHub Actions, Google BigQuery, Looker Studio_
+
+![Bike Share Toronto dashboard](assets/bikeshare-bubble-chart.png)
