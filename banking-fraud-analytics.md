@@ -3,6 +3,15 @@
 ### Summary
 This project is a fully automated system designed to detect financial fraud in real-time. I built a pipeline that takes raw banking transaction data, cleans it, and checks it for suspicious patterns like users spending unusually high amounts. The final result is a live dashboard that alerts fraud analysts to high-risk activity the moment it happens.
 
+<p>
+   <a href="{{ 'https://lookerstudio.google.com/s/kWp8xAUTeTU' | relative_url }}" target="_blank" rel="noopener noreferrer">
+     Link to the Live Dashboard
+   </a>
+</p>
+
+![Live Operational Dashboard showing real-time fraud alerts.](assets/banking-fraud-analytics.png)
+_Live Operational Dashboard showing real-time fraud alerts._
+
 ### Tools Used
 
 - Coding & Logic: _Python, SQL_
