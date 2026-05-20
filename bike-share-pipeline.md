@@ -1,7 +1,7 @@
 ## End-to-End Serverless Data Pipeline: Toronto Bike Share Analytics
 
 ### Summary 
-This project involved designing a fully automated, serverless data pipeline to capture real-time transit data from the Toronto Parking Authority. It utilizes a modern ELT (Extract, Load, Transform) architecture, ingesting raw API data into Google BigQuery and using dbt (data build tool) to transform it into trusted, historical records for a live dashboard.
+This project involved designing a fully automated, serverless data pipeline to capture real-time transit data from the Toronto Parking Authority. It utilizes a modern ELT (Extract, Load, Transform) architecture, automatically ingesting raw API data into Google BigQuery and using Google Cloud Dataform to transform it into clean, historical records for a live public dashboard. 
 
 <p>
   <a href="{{ 'https://lookerstudio.google.com/s/tGmMFc8I_jU' | relative_url }}" target="_blank" rel="noopener noreferrer">
@@ -14,14 +14,14 @@ This project involved designing a fully automated, serverless data pipeline to c
 
 ### Tools used
 
-- _Python (Pandas, Requests, Pandas-GBQ)_ - data ingestion
-- _dbt_ - data transformation and SQL modeling
-- _GitHub Actions_ - data piepline orchestration
-- _Google BigQuery_ - cloud warehousing
-- _Looker Studio_ - visualization and report building
+- _Python (Pandas, Requests)_: Data Ingestion
+- _GitHub Actions (Cron scheduling)_: Automation & Scheduling
+- _Google BigQuery_: Cloud Storage & Warehousing
+- _Google Cloud Dataform (SQL, Automated Testing)_: Transformation & Modeling
+- _Data Studio_: Advanced Analytics & Visualization
 
 ### Purpose of the work 
-I built this project to expand my technical analytics skillset with modern data engineering. Specifically, I wanted to demonstrate:
+I built this project to expand my digital analytics background into modern data engineering. Specifically, I wanted to demonstrate how to: 
 
 - **Engineer robust pipelines:** Moving away from manual exports to building "set and forget" pipelines using Python and cloud tools.
 - **Implement software best practices:** Treating data as code by using dbt to version-control my SQL logic and automate data quality testing.
@@ -29,43 +29,44 @@ I built this project to expand my technical analytics skillset with modern data 
 
 ### Key project phases
 
-**1. Data Ingestion (Python):** 
+**1\. The Data Source:** 
 
-I wrote a Python script to handle the raw data extraction.
+The pipeline begins with live transit data provided by the Toronto Bike Share API. Because this data arrives as messy, raw JSON code and only shows a snapshot in time, it needed to be captured continuously. 
 
-- Extracting live station data (status and metadata) from the Toronto Bike Share GBFS API.
-- Merging disparate JSON feeds and enriching inventory counts with geospatial coordinates.
-- Loading the raw data into Google BigQuery using an append-only strategy to preserve history.
+**2\. Data Ingestion (Python):** 
 
-**2. Transformation & Modeling (dbt):** 
+I wrote a Python script to act as the "worker" that extracts this raw data.
+- It authenticates with the public API and pulls the live station status and metadata.
+- It merges different JSON feeds together and enriches the bike inventory counts with geographic mapping coordinates.
 
-I implemented dbt to manage the transformation layer, moving complex logic out of the BI tool and into version control.
+**3\. Cloud Storage (Google BigQuery):** 
 
-- Modular SQL: I refactored large, messy queries into reusable data models (e.g., ```active_fleet_size```, ```station_health_score```).
-- Automated Testing: I configured tests to run every hour, ensuring no duplicate station IDs or invalid values ever reach the dashboard.
-- Documentation: I defined table schemas and descriptions in code, creating a self-documenting data dictionary.
+Once the Python script gathers the data, it loads it untouched into Google BigQuery using an append-only strategy. This acts as our secure data warehouse, instantly turning fleeting, temporary API data into a permanent historical record.
 
-**3. Serverless Orchestration** 
+**4\. Transformation & Modeling (Dataform):** 
 
-I replaced traditional, heavy schedulers (like Airflow) with GitHub Actions for a lightweight, serverless approach.
+I used Google Cloud Dataform to handle the transformation layer, moving complex logic out of the dashboard and into version-controlled code.
+- Modular SQL: I broke large, messy queries into smaller, reusable tables (e.g., active_fleet_size, station_health_score).
+- Automated Testing: I configured assertions to check for "bad data." If a duplicate station ID or a blank value is detected, it is flagged before it ever reaches the dashboard.
+- Documentation: I defined table schemas and descriptions directly in the code, creating a self-updating data dictionary.
 
-- The pipeline automatically installs dependencies, authenticates securely using dynamic keys, and executes the Python ingestion followed by the dbt transformation.
-- I utilized GitHub Secrets to manage cloud credentials, ensuring high security without hard-coding passwords.
+**5\. Serverless Scheduling & Automation (GitHub Actions):** 
 
-![Bike Share Github actions](assets/bikeshare-github-actions.png)
+Instead of deploying heavy, expensive orchestration servers (like Apache Airflow), I utilized a lightweight, 100% serverless approach to keep costs at zero.
+- GitHub Actions acts as a timer, waking up every 4 hours to run the Python ingestion script. It securely authenticates with Google Cloud using hidden credentials (Secrets).
+- Dataform's built-in scheduler automatically takes over afterward, running the SQL transformations to clean the data once it lands in BigQuery.
 
-**4. Advanced Analytics & Visualization:** 
+**6\. Advanced Analytics & Visualization (Looker Studio):** 
 
-By doing the heavy lifting in dbt, the visualization layer became lightweight and fast.
-
-- I pre-calculated "Stockout Rates" in the data warehouse, allowing Looker Studio to visualize station failure histograms instantly without lagging.
-- I created logic to filter out 'Zombie Stations' (inactive units), ensuring the analysis focuses on active fleet performance.
+Because Dataform does the "heavy lifting" in the data warehouse, the Looker Studio dashboard remains incredibly fast and responsive for the end-user.
+- I pre-calculated "Stockout Rates" (how often a station is empty) directly in the database, allowing the dashboard to instantly visualize station failure trends.
+- I created logic to filter out 'Zombie Stations' (broken or inactive units) so the analysis only focuses on the true, active fleet.
 
 ![Bike Share dashboard](assets/bikeshare-stockout-rate.png)
 
 **SQL Example:** 
 
-This is an example of a SQL query I wrote to categorize stations based on stockout rate. This helps group stations that are completely empty from those that are critically failing but operational. 
+This is an example of a SQL query I wrote to categorize stations based on how often they are completely empty. This helps the business easily separate stations that are functioning normally from those that are critically failing. 
 
 ```
 SELECT
@@ -95,12 +96,13 @@ FROM (
     name
 )
 ```
+
 ### Results and impact
 
-- **Data Trust & Quality:** Integrated automated testing via dbt, ensuring 100% confidence in the data accuracy before it reaches stakeholders.
-- **Zero-Touch Automation:** Successfully deployed a "set and forget" pipeline that runs 24/7. The system self-corrects and alerts on failure.
-- **Cost Optimization:** Architected the entire solution to run for $0.00/month by leveraging the Free Tier limits of Google Cloud and GitHub Actions, demonstrating high-value delivery with zero infrastructure cost.
-- **Operational Insight:** The analysis identified that ~8% of the network consists of ‘Zombie Stations’, providing a prioritized target list for operational rebalancing teams.
+- **Data Trust & Quality:** By integrating automated testing via Dataform, stakeholders can have 100% confidence in the dashboard's accuracy. 
+- **Zero-Touch Automation:** Successfully deployed a reliable pipeline that runs silently in the background every 4 hours, pulling critical data with zero manual intervention required.
+- **Cost Optimization:** Architected the entire solution to run for $0.00/month by strictly leveraging the free-tier limits of Google Cloud and GitHub Actions. This demonstrates a strong ability to deliver high-value engineering with zero infrastructure overhead. 
+- **Operational Insight:** The transformed data successfully identified that ~8% of the network consisted of "Zombie Stations," providing a clear, prioritized target list for operational rebalancing teams. 
 
 
 ### Links
