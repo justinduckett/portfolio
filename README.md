@@ -4,19 +4,17 @@
 
 This project is a fully automated system designed to detect financial fraud in real-time. I built a pipeline that takes raw banking transaction data, cleans it, and checks it for suspicious patterns like users spending unusually high amounts. The final result is a live dashboard that alerts fraud analysts to high-risk activity the moment it happens.
 
-_Tools: Python, SQL, dbt (data build tool), GitHub Actions, Google BigQuery, Looker Studio_
+_Tools: Python, SQL, dbt (data build tool), GitHub Actions, Google BigQuery, Data Studio_
 
 ![Live Operational Dashboard showing real-time fraud alerts.](assets/banking-fraud-dashboard.png)
 
+### [2. End-to-end serverless data pipeline: Toronto Bike Share analytics](bike-share-pipeline.md)
 
-### [2. Geocoding 9,000 addresses into a public map visited by 450k+ Ontarians](alcohol-map.md)
+This project involved designing a fully automated, serverless data pipeline to capture real-time transit data from the Toronto Parking Authority. It utilizes a modern ELT (Extract, Load, Transform) architecture, automatically ingesting raw API data into Google BigQuery and using Google Cloud Dataform to transform it into clean, historical records for a live public dashboard. 
 
-During an LCBO strike in July 2024, the Ontario Government rolled out a searchable and interactive map to help consumers find alternative alcohol retailers across the province. I led the geocoding of over 9,000 address locations for the map, as well as analytics implementation.
+_Tools: Python, SQL, GitHub Actions, Google BigQuery, Google Cloud Dataform, Data Studio_
 
-_Tools: Python, JupyterLab, Google Maps API, Google Tag Manager, Google Analytics 4, Looker Studio_
-
-![Alcoholic beverage map](assets/alcohol-map.png)
-
+![Bike Share Toronto dashboard](assets/bikeshare-bubble-chart.png)
 
 ### [3. Enterprise web analytics: Tracking full user journeys & optimizing marketing conversions](enterprise-analytics.md)
 
@@ -31,14 +29,14 @@ _Tools: Google Tag Manager, Google Analytics 4, Looker Studio, HTML, JavaScript,
 
 I created an automated monthly analytics report for Ontario’s flagship website, Ontario.ca. The report helps leadership teams quickly understand key trends, public interests, and the impact of marketing campaigns. It is distributed monthly to senior audiences, including the Premier’s Office, Ontario.ca Executive Table, and Directors of Communications.
 
-_Tools: Python, pandas, NumPy, Google Colab, Google Analytics API, Google Analytics 4, Google Sheets, Looker Studio_
+_Tools: Python, pandas, NumPy, Google Colab, Google Analytics API, Google Analytics 4, Google Sheets, Data Studio_
 
 ![Monthly product report](assets/monthly-report-new-trending.png)
 
-### [5. End-to-end serverless data pipeline: Toronto Bike Share analytics](bike-share-pipeline.md)
+### [5. Geocoding 9,000 addresses into a public map visited by 450k+ Ontarians](alcohol-map.md)
 
-This project involved designing a fully automated, serverless data pipeline to capture real-time transit data from the Toronto Parking Authority. It utilizes a modern ELT (Extract, Load, Transform) architecture, ingesting raw API data into Google BigQuery and using dbt (data build tool) to transform it into trusted, historical records for a live dashboard.
+During an LCBO strike in July 2024, the Ontario Government rolled out a searchable and interactive map to help consumers find alternative alcohol retailers across the province. I led the geocoding of over 9,000 address locations for the map, as well as analytics implementation.
 
-_Tools: Python, SQL, dbt, GitHub Actions, Google BigQuery, Looker Studio_
+_Tools: Python, JupyterLab, Google Maps API, Google Tag Manager, Google Analytics 4, Data Studio_
 
-![Bike Share Toronto dashboard](assets/bikeshare-bubble-chart.png)
+![Alcoholic beverage map](assets/alcohol-map.png)
