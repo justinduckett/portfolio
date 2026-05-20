@@ -21,7 +21,7 @@ This project involved designing a fully automated, serverless data pipeline to c
 - _Data Studio_: Advanced Analytics & Visualization
 
 ### Purpose of the work 
-I built this project to expand my digital analytics background into modern data engineering. Specifically, I wanted to demonstrate how to: 
+I built this project to expand my digital analytics background into modern analytics engineering. Specifically, I wanted to demonstrate how to: 
 
 - **Engineer robust pipelines:** Moving away from manual exports to building "set and forget" pipelines using Python and cloud tools.
 - **Implement software best practices:** Treating data as code by using dbt to version-control my SQL logic and automate data quality testing.
