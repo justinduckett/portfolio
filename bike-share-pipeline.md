@@ -1,7 +1,7 @@
 ## End-to-End Serverless Data Pipeline: Toronto Bike Share Analytics
 
 ### Summary 
-This project involved designing a fully automated, serverless data pipeline to capture real-time transit data from the Toronto Parking Authority. It utilizes a modern ELT (Extract, Load, Transform) architecture, automatically ingesting raw API data into Google BigQuery and using Google Cloud Dataform to transform it into clean, historical records for a live public dashboard. 
+This project involved designing a fully automated, serverless data pipeline to capture real-time transit data from the Toronto Parking Authority. It utilizes a modern ELT (Extract, Load, Transform) architecture, automatically ingesting raw API data via Google Cloud Run Functions into BigQuery, and using Google Cloud Dataform to transform it into clean, historical records for a live public dashboard.
 
 <p>
   <a href="{{ 'https://lookerstudio.google.com/s/tGmMFc8I_jU' | relative_url }}" target="_blank" rel="noopener noreferrer">
@@ -15,16 +15,18 @@ This project involved designing a fully automated, serverless data pipeline to c
 ### Tools used
 
 - _Python (Pandas, Requests)_: Data Ingestion
-- _GitHub Actions (Cron scheduling)_: Automation & Scheduling
+- _Google Cloud Run Functions_: Serverless Compute
+- _Google Cloud Scheduler_: Automation & Orchestration
 - _Google BigQuery_: Cloud Storage & Warehousing
 - _Google Cloud Dataform (SQL, Automated Testing)_: Transformation & Modeling
+- _Google Cloud Logging_: Automated Pipeline Observability
 - _Data Studio_: Advanced Analytics & Visualization
 
 ### Purpose of the work 
 I built this project to expand my digital analytics background into modern analytics engineering. Specifically, I wanted to demonstrate how to: 
 
 - **Engineer robust pipelines:** Moving away from manual exports to building "set and forget" pipelines using Python and cloud tools.
-- **Implement software best practices:** Treating data as code by using dbt to version-control my SQL logic and automate data quality testing.
+- **Implement software best practices:** Treating data as code by using Dataform to version-control my SQL logic and automate data quality testing.
 - **Solve real-world data problems:** Taking raw, transient API data and transforming it into a permanent historical record for trend analysis.
 
 ### Key project phases
@@ -33,15 +35,16 @@ I built this project to expand my digital analytics background into modern analy
 
 The pipeline begins with live transit data provided by the Toronto Bike Share API. Because this data arrives as messy, raw JSON code and only shows a snapshot in time, it needed to be captured continuously. 
 
-**2\. Data Ingestion (Python):** 
+**2\. Data Ingestion (Python & Cloud Run Functions):** 
 
-I wrote a Python script to act as the "worker" that extracts this raw data.
+I wrote a Python script to act as the "worker" that extracts this raw data and deployed it as a serverless container using Google Cloud Run Functions.
+
 - It authenticates with the public API and pulls the live station status and metadata.
 - It merges different JSON feeds together and enriches the bike inventory counts with geographic mapping coordinates.
 
 **3\. Cloud Storage (Google BigQuery):** 
 
-Once the Python script gathers the data, it loads it untouched into Google BigQuery using an append-only strategy. This acts as our secure data warehouse, instantly turning fleeting, temporary API data into a permanent historical record.
+Once the Python script gathers the data, it lands it untouched into Google BigQuery using an append-only strategy. This acts as our secure data warehouse, instantly turning temporary API data into a permanent historical record. An automated rolling-window deletion policy acts as a 'janitor' to manage storage footprints without manual intervention.
 
 **4\. Transformation & Modeling (Dataform):** 
 
@@ -50,13 +53,24 @@ I used Google Cloud Dataform to handle the transformation layer, moving complex 
 - Automated Testing: I configured assertions to check for "bad data." If a duplicate station ID or a blank value is detected, it is flagged before it ever reaches the dashboard.
 - Documentation: I defined table schemas and descriptions directly in the code, creating a self-updating data dictionary.
 
-**5\. Serverless Scheduling & Automation (GitHub Actions):** 
+_(Caption: Visualized Dataform DAG showing the flow from raw staging tables to cleaned, tested models)_
 
-Instead of deploying heavy, expensive orchestration servers (like Apache Airflow), I utilized a lightweight, 100% serverless approach to keep costs at zero.
-- GitHub Actions acts as a timer, waking up every 4 hours to run the Python ingestion script. It securely authenticates with Google Cloud using hidden credentials (Secrets).
+**5\. Serverless Scheduling & Orchestration (Cloud Scheduler):** 
+
+To guarantee the pipeline runs precisely on time, I implemented a 100% Google Cloud-native serverless architecture.
+- Google Cloud Scheduler acts as the centralized "alarm clock," waking up exactly every 4 hours to securely trigger the Cloud Run Function via HTTP.
 - Dataform's built-in scheduler automatically takes over afterward, running the SQL transformations to clean the data once it lands in BigQuery.
 
-**6\. Advanced Analytics & Visualization (Looker Studio):** 
+_(Caption: Cloud Scheduler executing the 4-hour cron job targeting the ingestion function)_
+
+**6\. Pipeline Observability & Alerting:** 
+
+To ensure high data reliability without requiring manual daily checks, I implemented proactive pipeline monitoring.
+
+- Configured GCP Log-Based Alerting to continuously scan the Cloud Run Function logs.
+- If the API goes down or the ingestion script encounters a runtime error, the system automatically triggers an email incident notification, enabling immediate triage.
+
+**7\. Advanced Analytics & Visualization (Looker Studio):** 
 
 Because Dataform does the "heavy lifting" in the data warehouse, the Looker Studio dashboard remains incredibly fast and responsive for the end-user.
 - I pre-calculated "Stockout Rates" (how often a station is empty) directly in the database, allowing the dashboard to instantly visualize station failure trends.
@@ -100,7 +114,7 @@ FROM (
 ### Results and impact
 
 - **Data Trust & Quality:** By integrating automated testing via Dataform, stakeholders can have 100% confidence in the dashboard's accuracy. 
-- **Zero-Touch Automation:** Successfully deployed a reliable pipeline that runs silently in the background every 4 hours, pulling critical data with zero manual intervention required.
+- **Zero-Touch Automation:** Successfully deployed a reliable pipeline that runs silently in the background every 4 hours, complete with automated email alerting for runtime failures.
 - **Cost Optimization:** Architected the entire solution to run for $0.00/month by strictly leveraging the free-tier limits of Google Cloud and GitHub Actions. This demonstrates a strong ability to deliver high-value engineering with zero infrastructure overhead. 
 - **Operational Insight:** The transformed data successfully identified that ~8% of the network consisted of "Zombie Stations," providing a clear, prioritized target list for operational rebalancing teams. 
 
