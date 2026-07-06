@@ -10,11 +10,11 @@ _Tools: Python, SQL, dbt (data build tool), GitHub Actions, Google BigQuery, Dat
 
 ### [2. End-to-end serverless data pipeline: Toronto Bike Share analytics](bike-share-pipeline.md)
 
-This project involved designing a fully automated, serverless data pipeline to capture real-time transit data from the Toronto Parking Authority. It utilizes a modern ELT (Extract, Load, Transform) architecture, automatically ingesting raw API data into Google BigQuery and using Google Cloud Dataform to transform it into clean, historical records for a live public dashboard. 
+I designed and built a fully automated, serverless data pipeline that captures live data from Toronto’s bike share network every 2 hours and turns it into an automated dashboard. Raw data flows from a live city API into Google BigQuery, gets cleaned and modeled with version controlled SQL in Google Cloud Dataform, and is visualized in Data Studio. The system ingests roughly 12,500 rows a day across 1,000+ stations, maintains a rolling window of about 380,000 records, runs hands off, tests its own data quality on every run, and costs $0.00 per month.
 
-_Tools: Python, SQL, GitHub Actions, Google BigQuery, Google Cloud Dataform, Data Studio_
+_Tools: Python, SQL, Google BigQuery, Dataform, Google Cloud Scheduler, Google Cloud Run Functions, Data Studio_
 
-![Bike Share Toronto dashboard](assets/bikeshare-bubble-chart.png)
+![Bike Share Toronto dashboard](assets/bikeshare_dashboard_one.png)
 
 ### [3. Enterprise web analytics: Tracking full user journeys & optimizing marketing conversions](enterprise-analytics.md)
 
