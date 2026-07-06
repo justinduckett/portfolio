@@ -4,9 +4,10 @@
 
 I designed and built a fully automated, serverless data pipeline that captures live data from Toronto's bike share network every 2 hours and turns it into a public, self updating dashboard. Raw data flows from a live city API into Google BigQuery, gets cleaned and modeled with version controlled SQL in Google Cloud Dataform, and is visualized in Data Studio (formerly Looker Studio). The system ingests roughly 12,500 rows a day across 1,000+ stations, maintains a rolling window of about 380,000 records, runs hands off, tests its own data quality on every run, and costs $0.00 per month.
 
-![Bike Share dashboard](assets/bikeshare-bubble-chart.png)
+![Bike Share dashboard](assets/bikeshare_dashboard_one.png)
 
-**[View the live dashboard](https://lookerstudio.google.com/reporting/ee66c00f-c017-4a8d-9249-72a67b1ba3a6)** | **[View the code on GitHub](https://github.com/justinduckett/toronto-bikeshare-pipeline)**
+- [Live Data Studio dashboard](https://lookerstudio.google.com/reporting/ee66c00f-c017-4a8d-9249-72a67b1ba3a6)
+- [GitHub repository](https://github.com/justinduckett/toronto-bikeshare-pipeline)
 
 ### Why I built this
 
@@ -20,7 +21,7 @@ My background is in digital analytics. I built this project to extend that found
 
 I structured the project around the standard components of modern data infrastructure, following the ELT (Extract, Load, Transform) approach: land the raw data in the warehouse first, then transform it there.
 
-> **[Screenshot 2: The architecture diagram (architecture_diagram.svg), showing all six components: API → Cloud Run Functions → BigQuery → Dataform → Data Studio, with the orchestration band above. It gives less technical readers the whole story at a glance.]**
+![Bike Share dashboard](assets/bikeshare_architecture_diagram.png)
 
 **1. Data source.** Toronto's bike share network publishes live station data through a public API using the global GBFS standard, the same format used by bike share systems worldwide. It reports how many bikes and docks each of the city's 1,000+ stations has right now.
 
@@ -30,13 +31,13 @@ I structured the project around the standard components of modern data infrastru
 
 **4. Transformation and modeling.** This is the analytics engineering core. Google Cloud Dataform turns the raw snapshots into clean, purpose built tables using version controlled SQL. Each table answers one question: bike availability by hour of day, the live status of every station, each station's reliability over 30 days. Every model carries automated assertions, tests that run on every execution and halt the pipeline if the data violates expectations, like duplicate stations or missing values.
 
-> **[Screenshot 3: The Dataform dependency graph, or a snippet of one .sqlx file showing the config block with assertions. This is the shot that shows engineering rigor to a technical reviewer.]**
+![Bike Share dashboard](assets/bikeshare_dataform_dag.png)
 
 **5. Orchestration.** Ingestion and transformation run in a fixed sequence every 2 hours: data lands at 14 minutes past the hour, and the SQL models run at 20 past. The transformation code itself is compiled into a release once daily at midnight, a deliberate separation between how often the data refreshes and how often the code changes. If a data quality test fails, the run stops and the dashboard keeps serving the last good data instead of broken numbers.
 
 **6. Analytics and visualization.** A three page Data Studio dashboard serves the results, organized by time horizon: a live network map refreshed every 2 hours, recent 7 day trends with week over week comparisons, and 30 day station reliability rankings.
 
-> **[Screenshot 4: Page 2 of the dashboard, the hourly availability curve with the two scorecard metrics. The daily rhythm of the curve makes a nice talking point.]**
+![Bike Share dashboard](assets/bikeshare_dashboard_two.png)
 
 ### Problems I solved along the way
 
@@ -52,7 +53,7 @@ Real pipelines break in instructive ways. Two examples from this build:
 - **Operational insight.** The reliability analysis identifies chronically empty stations. At the time of writing, 10 stations sat empty more than 80% of the time, a prioritized target list for rebalancing crews.
 - **Zero cost.** The full system runs at $0.00 per month on Google Cloud free tier resources.
 
-> **[Screenshot 5: Page 3 of the dashboard, the stockout histogram next to the station reliability table. Pairs well with the operational insight bullet above.]**
+![Bike Share dashboard](assets/bikeshare_dashboard_three.png)
 
 ### Example: the station reliability model
 
