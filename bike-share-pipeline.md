@@ -1,133 +1,93 @@
-## End-to-End Serverless Data Pipeline: Toronto Bike Share Analytics
+# End to End Serverless Data Pipeline: Toronto Bike Share Analytics
 
-### Summary 
-This project involved designing a fully automated, serverless data pipeline to capture real-time transit data from the Toronto Parking Authority. It utilizes a modern ELT (Extract, Load, Transform) architecture, automatically ingesting raw API data via Google Cloud Run Functions into BigQuery, and using Google Cloud Dataform to transform it into clean, historical records for a live public dashboard.
+### Summary
 
-<p>
-  <a href="{{ 'https://lookerstudio.google.com/s/tGmMFc8I_jU' | relative_url }}" target="_blank" rel="noopener noreferrer">
-    Link to the Toronto Bike Share Looker Studio report
-  </a>
-</p>
+I designed and built a fully automated, serverless data pipeline that captures live data from Toronto's bike share network every 2 hours and turns it into a public, self updating dashboard. Raw data flows from a live city API into Google BigQuery, gets cleaned and modeled with version controlled SQL in Google Cloud Dataform, and is visualized in Data Studio (formerly Looker Studio). The system ingests roughly 12,500 rows a day across 1,000+ stations, maintains a rolling window of about 380,000 records, runs hands off, tests its own data quality on every run, and costs $0.00 per month.
 
 ![Bike Share dashboard](assets/bikeshare-bubble-chart.png)
 
+**[View the live dashboard](https://lookerstudio.google.com/reporting/ee66c00f-c017-4a8d-9249-72a67b1ba3a6)** | **[View the code on GitHub](https://github.com/justinduckett/toronto-bikeshare-pipeline)**
 
-### Tools used
+### Why I built this
 
-- _Python (Pandas, Requests)_: Data Ingestion
-- _Google Cloud Run Functions_: Serverless Compute
-- _Google Cloud Scheduler_: Automation & Orchestration
-- _Google BigQuery_: Cloud Storage & Warehousing
-- _Google Cloud Dataform (SQL, Automated Testing)_: Transformation & Modeling
-- _Google Cloud Logging_: Automated Pipeline Observability
-- _Data Studio_: Advanced Analytics & Visualization
+My background is in digital analytics. I built this project to extend that foundation into analytics engineering, the discipline that sits between data analysis and data engineering. Specifically, I wanted hands on experience with three things:
 
-### Purpose of the work 
-I built this project to expand my digital analytics background into modern analytics engineering. Specifically, I wanted to demonstrate how to: 
+- **Building pipelines, not exports.** Replacing manual data pulls with a "set and forget" system that ingests, cleans, and serves data automatically.
+- **Treating data as code.** Version controlling every SQL transformation in Git, with automated tests that stop bad data before it reaches a dashboard.
+- **Solving a real data problem.** The bike share API only shows the current moment. By capturing snapshots every 2 hours, the pipeline turns fleeting data into a historical record you can actually analyze.
 
-- **Engineer robust pipelines:** Moving away from manual exports to building "set and forget" pipelines using Python and cloud tools.
-- **Implement software best practices:** Treating data as code by using Dataform to version-control my SQL logic and automate data quality testing.
-- **Solve real-world data problems:** Taking raw, transient API data and transforming it into a permanent historical record for trend analysis.
+### How it works
 
-### Key project phases
+I structured the project around the standard components of modern data infrastructure, following the ELT (Extract, Load, Transform) approach: land the raw data in the warehouse first, then transform it there.
 
-**1\. The Data Source:** 
+> **[Screenshot 2: The architecture diagram (architecture_diagram.svg), showing all six components: API → Cloud Run Functions → BigQuery → Dataform → Data Studio, with the orchestration band above. It gives less technical readers the whole story at a glance.]**
 
-The pipeline begins with live transit data provided by the Toronto Bike Share API. Because this data arrives as messy, raw JSON code and only shows a snapshot in time, it needed to be captured continuously. 
+**1. Data source.** Toronto's bike share network publishes live station data through a public API using the global GBFS standard, the same format used by bike share systems worldwide. It reports how many bikes and docks each of the city's 1,000+ stations has right now.
 
-**2\. Data Ingestion (Python & Cloud Run Functions):** 
+**2. Ingestion.** A Python script fetches the live feeds, merges bike counts with station locations, and loads the result into the warehouse. It runs serverlessly on Google Cloud Run Functions, woken every 2 hours by Cloud Scheduler. No servers to maintain, nothing to babysit.
 
-I wrote a Python script to act as the "worker" that extracts this raw data and deployed it as a serverless container using Google Cloud Run Functions.
+**3. Storage.** Google BigQuery acts as the data warehouse. Raw snapshots land untouched in an append only table, building the historical record. A scheduled cleanup keeps a rolling 30 day window, which keeps storage inside the free tier.
 
-- It authenticates with the public API and pulls the live station status and metadata.
-- It merges different JSON feeds together and enriches the bike inventory counts with geographic mapping coordinates.
+**4. Transformation and modeling.** This is the analytics engineering core. Google Cloud Dataform turns the raw snapshots into clean, purpose built tables using version controlled SQL. Each table answers one question: bike availability by hour of day, the live status of every station, each station's reliability over 30 days. Every model carries automated assertions, tests that run on every execution and halt the pipeline if the data violates expectations, like duplicate stations or missing values.
 
-**3\. Cloud Storage (Google BigQuery):** 
+> **[Screenshot 3: The Dataform dependency graph, or a snippet of one .sqlx file showing the config block with assertions. This is the shot that shows engineering rigor to a technical reviewer.]**
 
-Once the Python script gathers the data, it lands it untouched into Google BigQuery using an append-only strategy. This acts as our secure data warehouse, instantly turning temporary API data into a permanent historical record. An automated rolling-window deletion policy acts as a 'janitor' to manage storage footprints without manual intervention.
+**5. Orchestration.** Ingestion and transformation run in a fixed sequence every 2 hours: data lands at 14 minutes past the hour, and the SQL models run at 20 past. The transformation code itself is compiled into a release once daily at midnight, a deliberate separation between how often the data refreshes and how often the code changes. If a data quality test fails, the run stops and the dashboard keeps serving the last good data instead of broken numbers.
 
-**4\. Transformation & Modeling (Dataform):** 
+**6. Analytics and visualization.** A three page Data Studio dashboard serves the results, organized by time horizon: a live network map refreshed every 2 hours, recent 7 day trends with week over week comparisons, and 30 day station reliability rankings.
 
-I used Google Cloud Dataform to handle the transformation layer, moving complex logic out of the dashboard and into version-controlled code.
-- Modular SQL: I broke large, messy queries into smaller, reusable tables (e.g., active_fleet_size, station_health_score).
-- Automated Testing: I configured assertions to check for "bad data." If a duplicate station ID or a blank value is detected, it is flagged before it ever reaches the dashboard.
-- Documentation: I defined table schemas and descriptions directly in the code, creating a self-updating data dictionary.
+> **[Screenshot 4: Page 2 of the dashboard, the hourly availability curve with the two scorecard metrics. The daily rhythm of the curve makes a nice talking point.]**
 
-_(Caption: Visualized Dataform DAG showing the flow from raw staging tables to cleaned, tested models)_
+### Problems I solved along the way
 
-**5\. Serverless Scheduling & Orchestration (Cloud Scheduler):** 
+Real pipelines break in instructive ways. Two examples from this build:
 
-To guarantee the pipeline runs precisely on time, I implemented a 100% Google Cloud-native serverless architecture.
-- Google Cloud Scheduler acts as the centralized "alarm clock," waking up exactly every 4 hours to securely trigger the Cloud Run Function via HTTP.
-- Dataform's built-in scheduler automatically takes over afterward, running the SQL transformations to clean the data once it lands in BigQuery.
+- **A timezone bug that only showed up in the charts.** The hourly chart displayed impossible odd hours. The root cause was a hardcoded timezone offset hidden in a dashboard calculated field, which was wrong half the year because of daylight saving. I fixed it by applying a core principle: store timestamps in UTC, and convert to local time once, in the SQL modeling layer, using timezone aware functions that handle daylight saving automatically.
+- **Code that was merged but not deployed.** New models stopped appearing in scheduled runs. The cause was Dataform's release configuration, which compiles code snapshots on its own schedule, running stale code. Debugging it taught me the difference between code being merged and code being live, a distinction every production data system has.
 
-_(Caption: Cloud Scheduler executing the 4-hour cron job targeting the ingestion function)_
+### Results
 
-**6\. Pipeline Observability & Alerting:** 
+- **Zero touch automation.** The pipeline runs 12 cycles a day without manual intervention, capturing 1,000+ stations per cycle, roughly 12,500 rows daily, into a rolling window of about 380,000 records.
+- **Trustworthy by design.** All 6 SQL models carry automated assertions that test data quality on every run, and every chart description was verified against what the SQL actually computes.
+- **Operational insight.** The reliability analysis identifies chronically empty stations. At the time of writing, 10 stations sat empty more than 80% of the time, a prioritized target list for rebalancing crews.
+- **Zero cost.** The full system runs at $0.00 per month on Google Cloud free tier resources.
 
-To ensure high data reliability without requiring manual daily checks, I implemented proactive pipeline monitoring.
+> **[Screenshot 5: Page 3 of the dashboard, the stockout histogram next to the station reliability table. Pairs well with the operational insight bullet above.]**
 
-- Configured GCP Log-Based Alerting to continuously scan the Cloud Run Function logs.
-- If the API goes down or the ingestion script encounters a runtime error, the system automatically triggers an email incident notification, enabling immediate triage.
+### Example: the station reliability model
 
-**7\. Advanced Analytics & Visualization (Looker Studio):** 
+One SQL model calculates each station's "stockout rate," the share of time it sits completely empty, and groups stations into reliability bands:
 
-Because Dataform does the "heavy lifting" in the data warehouse, the Looker Studio dashboard remains incredibly fast and responsive for the end-user.
-- I pre-calculated "Stockout Rates" (how often a station is empty) directly in the database, allowing the dashboard to instantly visualize station failure trends.
-- I created logic to filter out 'Zombie Stations' (broken or inactive units) so the analysis only focuses on the true, active fleet.
-
-![Bike Share dashboard](assets/bikeshare-stockout-rate.png)
-
-**SQL Example:** 
-
-This is an example of a SQL query I wrote to categorize stations based on how often they are completely empty. This helps the business easily separate stations that are functioning normally from those that are critically failing. 
-
-```
-SELECT
-  name,
-  stockout_rate,
-  CASE
-    WHEN stockout_rate = 1.0 THEN 'Always empty'
-    WHEN stockout_rate >= 0.9 THEN '90% - 99% (Critical)'
-    WHEN stockout_rate >= 0.8 THEN '80% - 90%'
-    WHEN stockout_rate >= 0.7 THEN '70% - 80%'
-    WHEN stockout_rate >= 0.6 THEN '60% - 70%'
-    WHEN stockout_rate >= 0.5 THEN '50% - 60%'
-    WHEN stockout_rate >= 0.4 THEN '40% - 50%'
-    WHEN stockout_rate >= 0.3 THEN '30% - 40%'
-    WHEN stockout_rate >= 0.2 THEN '20% - 30%'
-    WHEN stockout_rate >= 0.1 THEN '10% - 20%'
-    WHEN stockout_rate >= 0.01 THEN '1% - 10%'
-    ELSE '0%'
-  END as reliability_bucket
-FROM (
+```sql
+WITH station_stats AS (
   SELECT
-    name,
-    AVG(CASE WHEN num_bikes_available = 0 THEN 1.0 ELSE 0.0 END) as stockout_rate
-  FROM
-    `toronto-bikeshare-analytics.bike_data.status_history`
-  GROUP BY
-    name
+    station_id,
+    ANY_VALUE(name) AS name,
+    AVG(CASE WHEN num_bikes_available = 0 THEN 1.0 ELSE 0.0 END) AS stockout_rate
+  FROM ${ref("status_history")}
+  WHERE name IS NOT NULL
+  GROUP BY station_id
 )
+
+SELECT
+  *,
+  CASE
+    WHEN stockout_rate = 0 THEN '0%'
+    WHEN stockout_rate <= 0.10 THEN '1-10%'
+    WHEN stockout_rate <= 0.50 THEN '10-50%'
+    WHEN stockout_rate < 1.0 THEN '50-99%'
+    ELSE 'Always empty'
+  END AS reliability_bucket
+FROM station_stats
 ```
 
-### Results and impact
+The `AVG(CASE WHEN ...)` pattern turns each snapshot into a 1 (empty) or 0 (has bikes), so the average is the fraction of time the station sat empty. Grouping by `station_id` rather than station name keeps the logic safe even if two stations ever share a name.
 
-- **Data Trust & Quality:** By integrating automated testing via Dataform, stakeholders can have 100% confidence in the dashboard's accuracy. 
-- **Zero-Touch Automation:** Successfully deployed a reliable pipeline that runs silently in the background every 4 hours, complete with automated email alerting for runtime failures.
-- **Cost Optimization:** Architected the entire solution to run for $0.00/month by strictly leveraging the free-tier limits of Google Cloud and GitHub Actions. This demonstrates a strong ability to deliver high-value engineering with zero infrastructure overhead. 
-- **Operational Insight:** The transformed data successfully identified that ~8% of the network consisted of "Zombie Stations," providing a clear, prioritized target list for operational rebalancing teams. 
+### What I'd tell you about it in five minutes
 
+The dashboard is the visible part, but the engineering underneath is the point: a live API becoming a tested, modeled, automatically refreshed analytics product, with every transformation in version control and every table guarded by data quality tests. That is the analytics engineering workflow, end to end.
 
 ### Links
 
-- <a href="{{ 'https://github.com/justinduckett/toronto-bikeshare-pipeline' | relative_url }}" target="_blank" rel="noopener noreferrer">
-  Link to the Bike Share Toronto GitHub Repository
-</a>
-
-- <a href="{{ 'https://lookerstudio.google.com/s/tGmMFc8I_jU' | relative_url }}" target="_blank" rel="noopener noreferrer">
-  Link to the Bike Share Toronto Looker Studio report
-</a>
-
-
-
+- [Live Data Studio dashboard](https://lookerstudio.google.com/reporting/ee66c00f-c017-4a8d-9249-72a67b1ba3a6)
+- [GitHub repository](https://github.com/justinduckett/toronto-bikeshare-pipeline)
