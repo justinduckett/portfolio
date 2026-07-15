@@ -4,9 +4,10 @@
 
 I built a fully automated fraud detection pipeline that simulates how a bank monitors transactions for suspicious activity. Every morning it generates simulated banking transactions mixed with two realistic fraud patterns. It loads them into Google BigQuery, scores every transaction against version controlled detection rules in dbt, and serves the results to a live triage dashboard built for fraud investigators. The system runs hands off on a daily schedule, tests its own data quality on every build, documents every column in a generated data dictionary, monitors its own freshness, and costs $0.00 per month.
 
-> **[Screenshot 1: The daily triage page (page 1 of the dashboard), showing the flagged transaction feed with evidence columns and the daily trend by type. This is the strongest visual hook, lead with it.]**
+![Banking Fraud dashboard](assets/banking_fraud_one.png)
 
-[**View the live dashboard**](https://lookerstudio.google.com/s/kWp8xAUTeTU) | [**View the code on GitHub**](https://github.com/justinduckett/banking-fraud-monitor)
+- [Live dashboard](https://lookerstudio.google.com/s/kWp8xAUTeTU)
+- [GitHub repository](https://github.com/justinduckett/banking-fraud-monitor)
 
 ### **Why I built this**
 
@@ -22,6 +23,8 @@ I built this project to apply analytics engineering practices to the fraud and r
 
 I structured the project around the standard components of modern data infrastructure, following the ELT approach: land raw data in the warehouse first, then transform it there.
 
+![Banking Fraud dashboard](assets/banking_fraud_architecture_diagram.png)
+
 **1. Data source.** Real banking data is private, so a Python script simulates a bank's daily transaction feed: everyday spending across 20 customers and 9 merchant categories, seeded with two fraud signatures. The first fraud feature is a 'high amount spike' far above a customer's normal spending. The second is a 'velocity attack' of 5 to 9 small purchases packed into a 45 minute window, to mimic a fraudster validating a stolen card before big spending. The two patterns look completely different in the data, which is the point: different fraud types need different detectors.
 
 **2. Ingestion.** A GitHub Actions workflow runs the python script every morning and appends roughly 100 new transactions to BigQuery. The script reads configuration from environment variables, logs with timestamps, and alerts failures. If an upload errors, the exception is re raised so the run turns red and sends an alert instead of quietly passing.
@@ -35,7 +38,7 @@ I structured the project around the standard components of modern data infrastru
 
 Every row receives a single classification the dashboard filters on. Every build runs a suite of dbt tests, including an accepted values test that halts the pipeline if the classification logic ever produces a category the dashboard does not expect. Every column is also documented in a data dictionary.
 
-> **[Screenshot 2: The dbt documentation page for the fraud_features model, showing column descriptions and test indicators. This is the shot that shows engineering rigor to a technical reviewer.]**
+![Banking Fraud dashboard](assets/banking_fraud_dbt_documentation.png)
 
 **5. Orchestration.** Ingestion and transformation run in a fixed daily sequence. 
 
@@ -46,7 +49,7 @@ The buffer exists because I ran into the ingestion ordering failure firsthand. A
 
 **6. Analytics and visualization.** A two page Looker Studio dashboard serves the results, and is organized by an investigator's workflow. A daily triage page lists every flagged transaction with the evidence behind it (amount, spending baseline, transactions in the past hour). A pattern analysis page shows where risk concentrates across customers and merchant categories. A freshness indicator also shows exactly how current the data is at a glance.
 
-> **[Screenshot 3: The category mix chart from page 2, showing normal categories as a wall of blue and the high risk categories dominated by flags. The two fraud signatures are visibly different patterns.]**
+![Banking Fraud dashboard](assets/banking_fraud_two.png)
 
 ### **Problems I solved along the way**
 
