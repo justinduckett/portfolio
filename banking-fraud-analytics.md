@@ -1,8 +1,8 @@
-# **Fintech data engineering: Detecting high-value banking fraud**
+# **Fintech anlaytics engineering: Detecting high-value banking fraud**
 
 ### **Summary**
 
-I built a fully automated fraud detection pipeline that simulates how a bank monitors transactions for suspicious activity. Every morning it generates simulated banking transactions mixed with two realistic fraud patterns. It loads them into Google BigQuery, scores every transaction against version controlled detection rules in dbt, and serves the results to a live triage dashboard built for fraud investigators. The system runs hands off on a daily schedule, tests its own data quality on every build, documents every column in a generated data dictionary, monitors its own freshness, and costs $0.00 per month.
+I built a fully automated fraud detection pipeline that simulates how a bank monitors transactions for suspicious activity. Every morning it generates transactions mixed with two realistic fraud patterns, scores them against tested detection rules in dbt and BigQuery, and serves the results to a live triage dashboard for fraud investigators. The system runs on a daily schedule, tests its own data quality, documents every column in a data dictionary, and costs $0.00 per month.
 
 ![Banking Fraud dashboard](assets/banking_fraud_one.png)
 
@@ -87,7 +87,7 @@ An improtant detail I included is `1 preceding` instead of `current row`. This h
 
 ### **What I'd tell you about it in five minutes**
 
-This pipeline failed in three quiet ways while I built and maintained it. The GitHub Action stopped running, credentials broke and the orchestration had a scheduling gap. Each failure became a fix you can see in the finished pipeline. There are now loud errors, freshness monitoring, sequenced schedules, and documentation that is honest about what cron scheduling cannot do. The dashboard is the visible part, but the mistakes and fixes I made while building the pipeline are where I learned the most.
+This pipeline failed in three quiet ways while I built and maintained it. The GitHub Action stopped running, credentials broke, and the orchestration had a scheduling gap. Each failure became a fix you can see in the finished pipeline. There are now loud errors, freshness monitoring, sequenced schedules, and documentation that is honest about what cron scheduling cannot do. The dashboard is the visible part, but the mistakes and fixes I made while building the pipeline are where I learned the most.
 
 ### **Links**
 
