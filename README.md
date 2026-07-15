@@ -1,18 +1,18 @@
 ## Projects
 
-### [1. Fintech data engineering: Detecting high-value banking fraud](banking-fraud-analytics.md)
+### [1. Fintech analytics engineering: Detecting high-value banking fraud](banking-fraud-analytics.md)
 
-This project is a fully automated system designed to detect financial fraud in real-time. I built a pipeline that takes raw banking transaction data, cleans it, and checks it for suspicious patterns like users spending unusually high amounts. The final result is a live dashboard that alerts fraud analysts to high-risk activity the moment it happens.
+I built a fully automated fraud detection pipeline that simulates how a bank monitors transactions for suspicious activity. Every morning it generates transactions seeded with two realistic fraud patterns, scores them against tested detection rules in dbt and BigQuery, and serves the results to a live triage dashboard for fraud investigators.
 
-_Tools: Python, SQL, dbt (data build tool), GitHub Actions, Google BigQuery, Data Studio_
+_Tools: Python, SQL, dbt (data build tool), Google BigQuery, GitHub Actions, Data Studio_
 
-![Live Operational Dashboard showing real-time fraud alerts.](assets/banking-fraud-dashboard.png)
+![Live Operational Dashboard showing real-time fraud alerts.](assets/banking_fraud_one.png)
 
-### [2. End-to-end serverless data pipeline: Toronto Bike Share analytics](bike-share-pipeline.md)
+### [2. Serverless analytics engineering: Tracking Toronto's bike share network live](bike-share-pipeline.md)
 
-I designed and built a fully automated, serverless data pipeline that captures live data from Toronto’s bike share network every 2 hours and turns it into an automated dashboard. Raw data flows from a live city API into Google BigQuery, gets cleaned and modeled with version controlled SQL in Google Cloud Dataform, and is visualized in Data Studio. The system ingests roughly 12,500 rows a day across 1,000+ stations, maintains a rolling window of about 380,000 records, runs hands off, tests its own data quality on every run, and costs $0.00 per month.
+A fully automated, serverless pipeline that captures live data from Toronto's bike share network every 2 hours. It ingests roughly 12,500 rows a day from a live city API into Google BigQuery, models them with version controlled SQL in Dataform, and powers a live dashboard tracking availability across 1,000+ stations.
 
-_Tools: Python, SQL, Google BigQuery, Dataform, Google Cloud Scheduler, Google Cloud Run Functions, Data Studio_
+_Tools: Python, SQL, Dataform, Google BigQuery, Google Cloud Scheduler, Google Cloud Run Functions, Data Studio_
 
 ![Bike Share Toronto dashboard](assets/bikeshare_dashboard_one.png)
 
