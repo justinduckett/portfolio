@@ -6,8 +6,8 @@ I built a pipeline to join conflicting information from a company's HR and ATS s
 
 ![People Analytics dashboard page one](assets/people_analytics_page_1.png)
 
-- [Live dashboard](ADD_LINK)
-- [GitHub repository](ADD_LINK)
+- [Live dashboard](https://datastudio.google.com/s/r_Lk8rb8nA8)
+- [GitHub repository](https://github.com/justinduckett/hr-people-analytics)
 
 ### Why I built this
 
@@ -134,5 +134,5 @@ This table stores the full headcount of the company for each day. Two smaller ta
 
 ### Links
 
-- [Live dashboard](ADD_LINK)
-- [GitHub repository](ADD_LINK)
+- [Live dashboard](https://datastudio.google.com/s/r_Lk8rb8nA8)
+- [GitHub repository](https://github.com/justinduckett/hr-people-analytics)
