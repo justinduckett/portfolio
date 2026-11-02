@@ -1,4 +1,4 @@
-# **Fintech anlaytics engineering: Detecting high-value banking fraud**
+# **Fintech analytics engineering: Detecting high-value banking fraud**
 
 ### **Summary**
 
@@ -83,7 +83,7 @@ avg(amount) over (
 ) as avg_spend_30_days
 ```
 
-An improtant detail I included is `1 preceding` instead of `current row`. This helps make sure the baseline deliberately excludes the transaction being scored. Without that, a $5,000 fraud gets averaged into the spending history it is judged against, diluting the signal exactly when it matters most. The velocity feature next to it keeps `current row` on purpose, because a transaction is part of the burst it belongs to.
+An important detail I included is `1 preceding` instead of `current row`. This helps make sure the baseline deliberately excludes the transaction being scored. Without that, a $5,000 fraud gets averaged into the spending history it is judged against, diluting the signal exactly when it matters most. The velocity feature next to it keeps `current row` on purpose, because a transaction is part of the burst it belongs to.
 
 ### **What I'd tell you about it in five minutes**
 
